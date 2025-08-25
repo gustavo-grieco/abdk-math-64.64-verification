@@ -4,7 +4,7 @@ This repository contains the on-going effort of verifying the important mathemat
 
 ## Status
 
-Currently, the following test were verified or were fully explored without finding counter examples:
+Currently, the following test were fully verified or were fully explored without finding any counter examples:
 
 | Invariant | Result |
 | ----- | :---: |
@@ -12,10 +12,10 @@ Currently, the following test were verified or were fully explored without findi
 | neg\_test\_identity(int128) | ✅ |
 | sub\_test\_equivalence\_to\_addition(int128,int128) | ✅ |
 | abs\_test\_negative(int128) | ✅ |
-| div\_test\_values(int128,int128): passed\! | 👍 |
-| inv\_test\_division(int128): | ✅ |
-| abs\_test\_positive(int128): | ✅ |
-| sqrt\_test\_negative(int128): | ✅ |
+| div\_test\_values(int128,int128) | 👍 |
+| inv\_test\_division(int128) | ✅ |
+| abs\_test\_positive(int128) | ✅ |
+| sqrt\_test\_negative(int128) | ✅ |
 | sub\_test\_identity(int128) | ✅ |
 | div\_test\_range(int128,int128) | ✅ |
 | abs\_test\_subadditivity(int128,int128) | ✅ |
@@ -43,7 +43,9 @@ When a test is explored using the symbolic engine in verification mode, there a 
 * **Error** ❌ A bug or a missing feature blocks the exploration or solving of some paths.
 * **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths. 
 
-The following invariants are in the process of verification but most of them will require aggresive state merging in order to be verified in a reasonable time. 
+In the case of `div\_test\_values(int128,int128)` and `div\_test\_negative\_divisor(int128,int128)`, there are timeout when solving some SMT constraints. Using different [SMTs solvers could work](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972). 
+
+The following invariants are in the process of verification but most of them will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in order to be verified in a reasonable time. 
 
 | Invariant | Result |
 | ----- | :---: |
@@ -83,6 +85,8 @@ The following invariants are in the process of verification but most of them wil
 | exp\_test\_inverse(int128) | ❓ |
 | exp\_test\_negative\_exponent(int128) | ❓ |
 
+These tables are going to be updated over time as more invariants are verified.
+
 ## How To Run
 
 To re-run the currently verified tests, execute:
@@ -100,4 +104,8 @@ We made a few small modifications to this codebase:
 * Adapted the header for using foundry libs and remappings.
 * Commented properties without arguments. These are actually unit tests and will be converted to foundry tests.
 * Some small changes in the formatting.
-* Some auxiliry function such as `function most_significant_bits` will be replaced by loop-less equivalent code.
+* Some auxiliary function such as `most_significant_bits` will be replaced by loop-less equivalent code.
+
+## Oh, Just One More Thing
+
+If there is an emergency and some invariant does not hold, please [open an issue](https://github.com/gustavo-grieco/abdk-math-64.64-verification/issues) in our issue tracker (even verified ones, there is always a chance of a bug). For contact the author, please use [this form](https://forms.gle/V3jt7C2JQgZhoXfe9).
