@@ -1,12 +1,10 @@
 # The Great Verification of ABDK Math 64.64
 
-This repository contains the on-going effort of verifying the important mathematical properties implemented by the [ABDK Math 64x64](https://github.com/abdk-consulting/abdk-libraries-solidity) using [Echidna](https://github.com/crytic/echidna) (powered by [hevm](https://github.com/ethereum/hevm/)). The invariants were directly re-used from the crytic-properties ones. 
+This repository contains the on-going effort of verifying the important mathematical properties implemented by the [ABDK Math 64x64](https://github.com/abdk-consulting/abdk-libraries-solidity) using [Echidna](https://github.com/crytic/echidna) (powered by [hevm](https://github.com/ethereum/hevm/)). The invariants were directly extracted from the [crytic-properties repository](https://github.com/crytic/properties/tree/main/contracts/Math/ABDKMath64x64). 
 
 ## Status
 
 Currently, the following test were verified or were fully explored without finding counter examples:
-
-
 
 | Invariant | Result |
 | ----- | :---: |
