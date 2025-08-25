@@ -1,6 +1,6 @@
 # The Great Verification of ABDK Math 64.64
 
-This repository contains the on-going effort of verifying the important mathematical properties implemented by the [ABDK Math 64x64](https://github.com/abdk-consulting/abdk-libraries-solidity) using [Echidna](https://github.com/crytic/echidna) (powered by [hevm](https://github.com/ethereum/hevm/)). The invariants were directly extracted from the [crytic-properties repository](https://github.com/crytic/properties/tree/main/contracts/Math/ABDKMath64x64). 
+This repository contains an ongoing effort to verify the key mathematical properties implemented by [ABDK Math 64x64](https://github.com/abdk-consulting/abdk-libraries-solidity) using [Echidna](https://github.com/crytic/echidna) (powered by [hevm](https://github.com/ethereum/hevm/)). The invariants were directly extracted from the [crytic-properties repository](https://github.com/crytic/properties/tree/main/contracts/Math/ABDKMath64x64).
 
 ## Status
 
@@ -35,7 +35,7 @@ Currently, the following test were fully verified or were fully explored without
 | div\_test\_negative\_divisor(int128,int128) | 👍 |
 | div\_test\_maximum\_numerator(int128) | ✅ |
 
-When a test is explored using the symbolic engine in verification mode, there a few possible results:
+When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
 
 * **Verified** ✅ The code was fully explored, without any issues on the translation or during solving. As expected, no counterexamples.
 * **Passed**  👍 The code was fully explored without detecting any counterexamples, but the SMT solver cannot determine the answer to some of the queries (e.g. it timed out), so the assertion could still fail.
@@ -95,17 +95,17 @@ To re-run the currently verified tests, execute:
 echidna . --contract CryticABDKMath64x64Properties --format text --config test/echidna.yaml
 ```
 
-[Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2) was used as the SMT solver. Please make sure you install Echidna after [this PR](https://github.com/crytic/echidna/pull/1431) was merged. 
+[Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2) was used as the SMT solver. Please ensure that you install Echidna after [this PR](https://github.com/crytic/echidna/pull/1431) has been merged. 
 
 ## Changes 
 
 We made a few small modifications to this codebase: 
 
-* Adapted the header for using foundry libs and remappings.
-* Commented properties without arguments. These are actually unit tests and will be converted to foundry tests.
-* Some small changes in the formatting.
-* Some auxiliary function such as `most_significant_bits` will be replaced by loop-less equivalent code.
+* Adapted the header for using Foundry libraries and remappings.
+* Commented out properties without arguments. These are actually unit tests and will be converted into Foundry tests.
+* Applied minor formatting changes.
+* Replaced some auxiliary functions such as `most_significant_bits` with loop-less equivalents.
 
-## Oh, Just One More Thing
+## Oh, Just One More Thing
 
-If there is an emergency and some invariant does not hold, please [open an issue](https://github.com/gustavo-grieco/abdk-math-64.64-verification/issues) in our issue tracker (even verified ones, there is always a chance of a bug). For contact the author, please use [this form](https://forms.gle/V3jt7C2JQgZhoXfe9).
+If an emergency arises and an invariant does not hold, please [open an issue](https://github.com/gustavo-grieco/abdk-math-64.64-verification/issues) in our tracker (even verified invariants can still reveal bugs). To contact the author directly, please use [this form](https://forms.gle/V3jt7C2JQgZhoXfe9).
