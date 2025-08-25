@@ -1,0 +1,11 @@
+testMode: assertion
+
+seqLen: 1
+workers: 0
+format: text
+
+symExec: true
+symExecMaxExplore: 100
+symExecMaxIters: 100
+symExecTimeout: 240
+symExecNSolvers: 10

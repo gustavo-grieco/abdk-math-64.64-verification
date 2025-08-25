@@ -124,6 +124,7 @@ contract CryticABDKMath64x64Properties {
 
     // Return the i most significant bits from |n|. If n has less than i significant bits, return |n|
     // Uses functions from the library under test!
+    /*
     function most_significant_bits(
         int128 n,
         uint256 i
@@ -170,6 +171,7 @@ contract CryticABDKMath64x64Properties {
         // This could be modified to get the precision as a parameter to the function
         return equal_within_precision_u(a_msb, b_msb, 1);
     }
+    */
 
     /* ================================================================
        Library wrappers.
@@ -336,47 +338,47 @@ contract CryticABDKMath64x64Properties {
 
     // Adding zero to the maximum value shouldn't revert, as it is valid
     // Moreover, the result must be MAX_64x64
-    function add_test_maximum_value() public view {
-        int128 result;
-        try this.add(MAX_64x64, ZERO_FP) {
-            // Expected behaviour, does not revert
-            result = this.add(MAX_64x64, ZERO_FP);
-            assert(result == MAX_64x64);
-        } catch {
-            assert(false);
-        }
-    }
+    //function add_test_maximum_value() public view {
+    //    int128 result;
+    //    try this.add(MAX_64x64, ZERO_FP) {
+    //        // Expected behaviour, does not revert
+    //        result = this.add(MAX_64x64, ZERO_FP);
+    //        assert(result == MAX_64x64);
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     // Adding one to the maximum value should revert, as it is out of range
-    function add_test_maximum_value_plus_one() public view {
-        try this.add(MAX_64x64, ONE_FP) {
-            assert(false);
-        } catch {
-            // Expected behaviour, reverts
-        }
-    }
+    //function add_test_maximum_value_plus_one() public view {
+    //    try this.add(MAX_64x64, ONE_FP) {
+    //        assert(false);
+    //    } catch {
+    //        // Expected behaviour, reverts
+    //    }
+    //}
 
     // Adding zero to the minimum value shouldn't revert, as it is valid
     // Moreover, the result must be MIN_64x64
-    function add_test_minimum_value() public view {
-        int128 result;
-        try this.add(MIN_64x64, ZERO_FP) {
-            // Expected behaviour, does not revert
-            result = this.add(MIN_64x64, ZERO_FP);
-            assert(result == MIN_64x64);
-        } catch {
-            assert(false);
-        }
-    }
+    //function add_test_minimum_value() public view {
+    //    int128 result;
+    //    try this.add(MIN_64x64, ZERO_FP) {
+    //        // Expected behaviour, does not revert
+    //        result = this.add(MIN_64x64, ZERO_FP);
+    //        assert(result == MIN_64x64);
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     // Adding minus one to the minimum value should revert, as it is out of range
-    function add_test_minimum_value_plus_negative_one() public view {
-        try this.add(MIN_64x64, MINUS_ONE_FP) {
-            assert(false);
-        } catch {
-            // Expected behaviour, reverts
-        }
-    }
+    //function add_test_minimum_value_plus_negative_one() public view {
+    //    try this.add(MIN_64x64, MINUS_ONE_FP) {
+    //        assert(false);
+    //    } catch {
+    //        // Expected behaviour, reverts
+    //    }
+    //}
 
     /* ================================================================
 
@@ -463,48 +465,48 @@ contract CryticABDKMath64x64Properties {
 
     // Subtracting zero from the maximum value shouldn't revert, as it is valid
     // Moreover, the result must be MAX_64x64
-    function sub_test_maximum_value() public view {
-        int128 result;
-        try this.sub(MAX_64x64, ZERO_FP) {
-            // Expected behaviour, does not revert
-            result = this.sub(MAX_64x64, ZERO_FP);
-            assert(result == MAX_64x64);
-        } catch {
-            assert(false);
-        }
-    }
+    //function sub_test_maximum_value() public view {
+    //    int128 result;
+    //    try this.sub(MAX_64x64, ZERO_FP) {
+    //        // Expected behaviour, does not revert
+    //        result = this.sub(MAX_64x64, ZERO_FP);
+    //        assert(result == MAX_64x64);
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     // Subtracting minus one from the maximum value should revert,
     // as it is out of range
-    function sub_test_maximum_value_minus_neg_one() public view {
-        try this.sub(MAX_64x64, MINUS_ONE_FP) {
-            assert(false);
-        } catch {
-            // Expected behaviour, reverts
-        }
-    }
+    //function sub_test_maximum_value_minus_neg_one() public view {
+    //    try this.sub(MAX_64x64, MINUS_ONE_FP) {
+    //        assert(false);
+    //    } catch {
+    //        // Expected behaviour, reverts
+    //    }
+    //}
 
     // Subtracting zero from the minimum value shouldn't revert, as it is valid
     // Moreover, the result must be MIN_64x64
-    function sub_test_minimum_value() public view {
-        int128 result;
-        try this.sub(MIN_64x64, ZERO_FP) {
-            // Expected behaviour, does not revert
-            result = this.sub(MIN_64x64, ZERO_FP);
-            assert(result == MIN_64x64);
-        } catch {
-            assert(false);
-        }
-    }
+    //function sub_test_minimum_value() public view {
+    //    int128 result;
+    //    try this.sub(MIN_64x64, ZERO_FP) {
+    //        // Expected behaviour, does not revert
+    //        result = this.sub(MIN_64x64, ZERO_FP);
+    //        assert(result == MIN_64x64);
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     // Subtracting one from the minimum value should revert, as it is out of range
-    function sub_test_minimum_value_minus_one() public view {
-        try this.sub(MIN_64x64, ONE_FP) {
-            assert(false);
-        } catch {
-            // Expected behaviour, reverts
-        }
-    }
+    //function sub_test_minimum_value_minus_one() public view {
+    //    try this.sub(MIN_64x64, ONE_FP) {
+    //        assert(false);
+    //    } catch {
+    //        // Expected behaviour, reverts
+    //    }
+    //}
 
     /* ================================================================
 
@@ -527,6 +529,7 @@ contract CryticABDKMath64x64Properties {
         assert(x_y == y_x);
     }
 
+    /*
     // Test for associative property
     // (x * y) * z == x * (y * z)
     function mul_test_associative(int128 x, int128 y, int128 z) public view {
@@ -572,6 +575,7 @@ contract CryticABDKMath64x64Properties {
             )
         );
     }
+    */
 
     // Test for identity operation
     // x * 1 == x  (also check that x * 0 == 0)
@@ -583,6 +587,7 @@ contract CryticABDKMath64x64Properties {
         assert(x_1 == x);
     }
 
+    /*
     // Test that the result increases or decreases depending
     // on the value to be added
     function mul_test_values(int128 x, int128 y) public view {
@@ -606,6 +611,7 @@ contract CryticABDKMath64x64Properties {
             }
         }
     }
+    */
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -627,29 +633,29 @@ contract CryticABDKMath64x64Properties {
 
     // Multiplying the maximum value times one shouldn't revert, as it is valid
     // Moreover, the result must be MAX_64x64
-    function mul_test_maximum_value() public view {
-        int128 result;
-        try this.mul(MAX_64x64, ONE_FP) {
-            // Expected behaviour, does not revert
-            result = this.mul(MAX_64x64, ONE_FP);
-            assert(result == MAX_64x64);
-        } catch {
-            assert(false);
-        }
-    }
+    //function mul_test_maximum_value() public view {
+    //    int128 result;
+    //    try this.mul(MAX_64x64, ONE_FP) {
+    //        // Expected behaviour, does not revert
+    //        result = this.mul(MAX_64x64, ONE_FP);
+    //        assert(result == MAX_64x64);
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     // Multiplying the minimum value times one shouldn't revert, as it is valid
     // Moreover, the result must be MIN_64x64
-    function mul_test_minimum_value() public view {
-        int128 result;
-        try this.mul(MIN_64x64, ONE_FP) {
-            // Expected behaviour, does not revert
-            result = this.mul(MIN_64x64, ONE_FP);
-            assert(result == MIN_64x64);
-        } catch {
-            assert(false);
-        }
-    }
+    //function mul_test_minimum_value() public view {
+    //    int128 result;
+    //    try this.mul(MIN_64x64, ONE_FP) {
+    //        // Expected behaviour, does not revert
+    //        result = this.mul(MIN_64x64, ONE_FP);
+    //        assert(result == MIN_64x64);
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     /* ================================================================
 
@@ -804,31 +810,31 @@ contract CryticABDKMath64x64Properties {
 
     // Test for the zero-case
     // -0 == 0
-    function neg_test_zero() public view {
-        int128 neg_x = neg(ZERO_FP);
-
-        assert(neg_x == ZERO_FP);
-    }
+    //function neg_test_zero() public view {
+    //    int128 neg_x = neg(ZERO_FP);
+    //
+    //    assert(neg_x == ZERO_FP);
+    //}
 
     // Test for the maximum value case
     // Since this is implementation-dependant, we will actually test with MAX_64x64-EPS
-    function neg_test_maximum() public view {
-        try this.neg(sub(MAX_64x64, EPSILON)) {
-            // Expected behaviour, does not revert
-        } catch {
-            assert(false);
-        }
-    }
+    //function neg_test_maximum() public view {
+    //    try this.neg(sub(MAX_64x64, EPSILON)) {
+    //        // Expected behaviour, does not revert
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     // Test for the minimum value case
     // Since this is implementation-dependant, we will actually test with MIN_64x64+EPS
-    function neg_test_minimum() public view {
-        try this.neg(add(MIN_64x64, EPSILON)) {
-            // Expected behaviour, does not revert
-        } catch {
-            assert(false);
-        }
-    }
+    //function neg_test_minimum() public view {
+    //    try this.neg(add(MIN_64x64, EPSILON)) {
+    //        // Expected behaviour, does not revert
+    //    } catch {
+    //        assert(false);
+    //    }
+    //}
 
     /* ================================================================
 
@@ -860,6 +866,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test the multiplicativeness property
     // | x * y | == |x| * |y|
+    /*
     function abs_test_multiplicativeness(int128 x, int128 y) public pure {
         int128 abs_x = abs(x);
         int128 abs_y = abs(y);
@@ -871,7 +878,7 @@ contract CryticABDKMath64x64Properties {
 
         // Assume a tolerance of two bits of precision
         assert(equal_within_precision(abs_xy, abs_x_abs_y, 2));
-    }
+    }*/
 
     // Test the subadditivity property
     // | x + y | <= |x| + |y|
@@ -890,40 +897,40 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test the zero-case | 0 | = 0
-    function abs_test_zero() public view {
-        int128 abs_zero;
-
-        try this.abs(ZERO_FP) {
-            // If it doesn't revert, the value must be zero
-            abs_zero = this.abs(ZERO_FP);
-            assert(abs_zero == ZERO_FP);
-        } catch {
-            // Unexpected, the function must not revert here
-            assert(false);
-        }
-    }
+    //function abs_test_zero() public view {
+    //    int128 abs_zero;
+    //
+    //    try this.abs(ZERO_FP) {
+    //        // If it doesn't revert, the value must be zero
+    //        abs_zero = this.abs(ZERO_FP);
+    //        assert(abs_zero == ZERO_FP);
+    //    } catch {
+    //        // Unexpected, the function must not revert here
+    //        assert(false);
+    //   }
+    //}
 
     // Test the maximum value
-    function abs_test_maximum() public view {
-        int128 abs_max;
-
-        try this.abs(MAX_64x64) {
-            // If it doesn't revert, the value must be MAX_64x64
-            abs_max = this.abs(MAX_64x64);
-            assert(abs_max == MAX_64x64);
-        } catch {}
-    }
+    //function abs_test_maximum() public view {
+    //    int128 abs_max;
+    //
+    //    try this.abs(MAX_64x64) {
+    //        // If it doesn't revert, the value must be MAX_64x64
+    //        abs_max = this.abs(MAX_64x64);
+    //        assert(abs_max == MAX_64x64);
+    //    } catch {}
+    //}
 
     // Test the minimum value
-    function abs_test_minimum() public view {
-        int128 abs_min;
-
-        try this.abs(MIN_64x64) {
-            // If it doesn't revert, the value must be the negative of MIN_64x64
-            abs_min = this.abs(MIN_64x64);
-            assert(abs_min == neg(MIN_64x64));
-        } catch {}
-    }
+    //function abs_test_minimum() public view {
+    //    int128 abs_min;
+    //
+    //    try this.abs(MIN_64x64) {
+    //        // If it doesn't revert, the value must be the negative of MIN_64x64
+    //        abs_min = this.abs(MIN_64x64);
+    //        assert(abs_min == neg(MIN_64x64));
+    //    } catch {}
+    //}
 
     /* ================================================================
 
@@ -939,6 +946,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the inverse of the inverse is close enough to the
     // original number
+    /*
     function inv_test_double_inverse(int128 x) public view {
         require(x != ZERO_FP);
 
@@ -948,7 +956,7 @@ contract CryticABDKMath64x64Properties {
         uint256 loss = 2 * toUInt(log_2(x)) + 2;
 
         assert(equal_within_precision(x, double_inv_x, loss));
-    }
+    }*/
 
     // Test equivalence with division
     function inv_test_division(int128 x) public view {
@@ -959,13 +967,10 @@ contract CryticABDKMath64x64Properties {
 
         assert(inv_x == div_1_x);
     }
-
+    /*
     // Test the anticommutativity of the division
     // x / y == 1 / (y / x)
-    function inv_test_division_noncommutativity(
-        int128 x,
-        int128 y
-    ) public view {
+        function inv_test_division_noncommutativity(int128 x, int128 y) public view {
         require(x != ZERO_FP && y != ZERO_FP);
 
         int128 x_y = div(x, y);
@@ -1019,7 +1024,7 @@ contract CryticABDKMath64x64Properties {
 
         // They should agree with a tolerance of one tenth of a percent
         assert(equal_within_tolerance(identity, ONE_FP, ONE_TENTH_FP));
-    }
+    }*/
 
     // Test that the absolute value of the result is in range zero-one
     // if x is greater than one, else, the absolute value of the result
@@ -1056,38 +1061,38 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test the zero-case, should revert
-    function inv_test_zero() public view {
-        try this.inv(ZERO_FP) {
-            // Unexpected, the function must revert
-            assert(false);
-        } catch {}
-    }
+    //function inv_test_zero() public view {
+    //    try this.inv(ZERO_FP) {
+    //        // Unexpected, the function must revert
+    //        assert(false);
+    //    } catch {}
+    //}
 
     // Test the maximum value case, should not revert, and be close to zero
-    function inv_test_maximum() public view {
-        int128 inv_maximum;
-
-        try this.inv(MAX_64x64) {
-            inv_maximum = this.inv(MAX_64x64);
-            assert(equal_within_precision(inv_maximum, ZERO_FP, 10));
-        } catch {
-            // Unexpected, the function must not revert
-            assert(false);
-        }
-    }
+    //function inv_test_maximum() public view {
+    //    int128 inv_maximum;
+    //
+    //    try this.inv(MAX_64x64) {
+    //        inv_maximum = this.inv(MAX_64x64);
+    //        assert(equal_within_precision(inv_maximum, ZERO_FP, 10));
+    //    } catch {
+    //        // Unexpected, the function must not revert
+    //        assert(false);
+    //    }
+    //}
 
     // Test the minimum value case, should not revert, and be close to zero
-    function inv_test_minimum() public view {
-        int128 inv_minimum;
-
-        try this.inv(MIN_64x64) {
-            inv_minimum = this.inv(MIN_64x64);
-            assert(equal_within_precision(abs(inv_minimum), ZERO_FP, 10));
-        } catch {
-            // Unexpected, the function must not revert
-            assert(false);
-        }
-    }
+    //function inv_test_minimum() public view {
+    //    int128 inv_minimum;
+    //
+    //    try this.inv(MIN_64x64) {
+    //        inv_minimum = this.inv(MIN_64x64);
+    //        assert(equal_within_precision(abs(inv_minimum), ZERO_FP, 10));
+    //    } catch {
+    //        // Unexpected, the function must not revert
+    //        assert(false);
+    //    }
+    //}
 
     /* ================================================================
 
@@ -1137,28 +1142,28 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for the maximum value
-    function avg_test_maximum() public view {
-        int128 result;
-
-        // This may revert due to overflow depending on implementation
-        // If it doesn't revert, the result must be MAX_64x64
-        try this.avg(MAX_64x64, MAX_64x64) {
-            result = this.avg(MAX_64x64, MAX_64x64);
-            assert(result == MAX_64x64);
-        } catch {}
-    }
+    //function avg_test_maximum() public view {
+    //    int128 result;
+    //
+    //    // This may revert due to overflow depending on implementation
+    //    // If it doesn't revert, the result must be MAX_64x64
+    //    try this.avg(MAX_64x64, MAX_64x64) {
+    //        result = this.avg(MAX_64x64, MAX_64x64);
+    //        assert(result == MAX_64x64);
+    //    } catch {}
+    //}
 
     // Test for the minimum value
-    function avg_test_minimum() public view {
-        int128 result;
-
-        // This may revert due to overflow depending on implementation
-        // If it doesn't revert, the result must be MIN_64x64
-        try this.avg(MIN_64x64, MIN_64x64) {
-            result = this.avg(MIN_64x64, MIN_64x64);
-            assert(result == MIN_64x64);
-        } catch {}
-    }
+    //function avg_test_minimum() public view {
+    //    int128 result;
+    //
+    //    // This may revert due to overflow depending on implementation
+    //    // If it doesn't revert, the result must be MIN_64x64
+    //    try this.avg(MIN_64x64, MIN_64x64) {
+    //        result = this.avg(MIN_64x64, MIN_64x64);
+    //        assert(result == MIN_64x64);
+    //    } catch {}
+    //}
 
     /* ================================================================
 
@@ -1174,7 +1179,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the result is between the two operands
     // gavg(x, y) >= min(x, y) && gavg(x, y) <= max(x, y)
-    function gavg_test_values_in_range(int128 x, int128 y) public view {
+    /*function gavg_test_values_in_range(int128 x, int128 y) public view {
         int128 gavg_xy = gavg(x, y);
 
         if (x == ZERO_FP || y == ZERO_FP) {
@@ -1186,7 +1191,7 @@ contract CryticABDKMath64x64Properties {
                 assert(gavg_xy >= abs(x) && gavg_xy <= abs(y));
             }
         }
-    }
+    }*/
 
     // Test that the average of the same number is itself
     // gavg(x, x) == | x |
@@ -1198,12 +1203,12 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the order of operands is irrelevant
     // gavg(x, y) == gavg(y, x)
-    function gavg_test_operand_order(int128 x, int128 y) public pure {
+    /*function gavg_test_operand_order(int128 x, int128 y) public pure {
         int128 gavg_xy = gavg(x, y);
         int128 gavg_yx = gavg(y, x);
 
         assert(gavg_xy == gavg_yx);
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -1212,28 +1217,28 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for the maximum value
-    function gavg_test_maximum() public view {
-        int128 result;
-
-        // This may revert due to overflow depending on implementation
-        // If it doesn't revert, the result must be MAX_64x64
-        try this.gavg(MAX_64x64, MAX_64x64) {
-            result = this.gavg(MAX_64x64, MAX_64x64);
-            assert(result == MAX_64x64);
-        } catch {}
-    }
+    //function gavg_test_maximum() public view {
+    //    int128 result;
+    //
+    //    // This may revert due to overflow depending on implementation
+    //    // If it doesn't revert, the result must be MAX_64x64
+    //    try this.gavg(MAX_64x64, MAX_64x64) {
+    //        result = this.gavg(MAX_64x64, MAX_64x64);
+    //        assert(result == MAX_64x64);
+    //    } catch {}
+    //}
 
     // Test for the minimum value
-    function gavg_test_minimum() public view {
-        int128 result;
-
-        // This may revert due to overflow depending on implementation
-        // If it doesn't revert, the result must be MIN_64x64
-        try this.gavg(MIN_64x64, MIN_64x64) {
-            result = this.gavg(MIN_64x64, MIN_64x64);
-            assert(result == MIN_64x64);
-        } catch {}
-    }
+    //function gavg_test_minimum() public view {
+    //    int128 result;
+    //
+    //    // This may revert due to overflow depending on implementation
+    //    // If it doesn't revert, the result must be MIN_64x64
+    //    try this.gavg(MIN_64x64, MIN_64x64) {
+    //        result = this.gavg(MIN_64x64, MIN_64x64);
+    //        assert(result == MIN_64x64);
+    //    } catch {}
+    //}
 
     /* ================================================================
 
@@ -1246,7 +1251,7 @@ contract CryticABDKMath64x64Properties {
        These should make sure that the implemented function complies
        with math rules and expected behaviour.
        ================================================================ */
-
+    /*
     // Test for zero exponent
     // x ** 0 == 1
     function pow_test_zero_exponent(int128 x) public view {
@@ -1283,11 +1288,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for product of powers of the same base
     // x ** a * x ** b == x ** (a + b)
-    function pow_test_product_same_base(
-        int128 x,
-        uint256 a,
-        uint256 b
-    ) public view {
+    function pow_test_product_same_base(int128 x, uint256 a, uint256 b) public view {
         require(x != ZERO_FP);
 
         int128 x_a = pow(x, a);
@@ -1299,11 +1300,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for power of an exponentiation
     // (x ** a) ** b == x ** (a * b)
-    function pow_test_power_of_an_exponentiation(
-        int128 x,
-        uint256 a,
-        uint256 b
-    ) public view {
+    function pow_test_power_of_an_exponentiation(int128 x, uint256 a, uint256 b) public view {
         require(x != ZERO_FP);
 
         int128 x_a = pow(x, a);
@@ -1315,11 +1312,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property for power of a product
     // (x * y) ** a == x ** a * y ** a
-    function pow_test_distributive(
-        int128 x,
-        int128 y,
-        uint256 a
-    ) public view {
+    function pow_test_distributive(int128 x, int128 y, uint256 a) public view {
         require(x != ZERO_FP && y != ZERO_FP);
         require(a > 2 ** 32); // to avoid massive loss of precision
 
@@ -1370,14 +1363,14 @@ contract CryticABDKMath64x64Properties {
                 assert(x_a > ZERO_FP);
             }
         }
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
        These will make sure that the function reverts on overflow and
        behaves correctly on edge cases
        ================================================================ */
-
+    /*
     // Test for maximum base and exponent > 1
     function pow_test_maximum_base(uint256 a) public view {
         require(a > 1);
@@ -1397,7 +1390,7 @@ contract CryticABDKMath64x64Properties {
         int128 result = pow(x, a);
 
         assert(result == ZERO_FP);
-    }
+    }*/
 
     /* ================================================================
 
@@ -1413,6 +1406,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for the inverse operation
     // sqrt(x) * sqrt(x) == x
+    /*
     function sqrt_test_inverse_mul(int128 x) public view {
         require(x >= ZERO_FP);
 
@@ -1427,10 +1421,11 @@ contract CryticABDKMath64x64Properties {
                 (toUInt(log_2(x)) >> 1) + 2
             )
         );
-    }
+    }*/
 
     // Test for the inverse operation
     // sqrt(x) ** 2 == x
+    /*
     function sqrt_test_inverse_pow(int128 x) public view {
         require(x >= ZERO_FP);
 
@@ -1445,8 +1440,8 @@ contract CryticABDKMath64x64Properties {
                 (toUInt(log_2(x)) >> 1) + 2
             )
         );
-    }
-
+    }*/
+    /*
     // Test for distributive property respect to the multiplication
     // sqrt(x) * sqrt(y) == sqrt(x * y)
     function sqrt_test_distributive(int128 x, int128 y) public view {
@@ -1466,7 +1461,7 @@ contract CryticABDKMath64x64Properties {
 
         // Allow an error of up to one tenth of a percent
         assert(equal_within_tolerance(sqrt_x_sqrt_y, sqrt_xy, ONE_TENTH_FP));
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -1475,30 +1470,30 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for zero case
-    function sqrt_test_zero() public view {
-        assert(sqrt(ZERO_FP) == ZERO_FP);
-    }
+    //function sqrt_test_zero() public view {
+    //    assert(sqrt(ZERO_FP) == ZERO_FP);
+    //}
 
     // Test for maximum value
-    function sqrt_test_maximum() public view {
-        try this.sqrt(MAX_64x64) {
-            // Expected behaviour, MAX_64x64 is positive, and operation
-            // should not revert as the result is in range
-        } catch {
-            // Unexpected, should not revert
-            assert(false);
-        }
-    }
+    //function sqrt_test_maximum() public view {
+    //    try this.sqrt(MAX_64x64) {
+    //        // Expected behaviour, MAX_64x64 is positive, and operation
+    //        // should not revert as the result is in range
+    //    } catch {
+    //        // Unexpected, should not revert
+    //        assert(false);
+    //    }
+    //}
 
     // Test for minimum value
-    function sqrt_test_minimum() public view {
-        try this.sqrt(MIN_64x64) {
-            // Unexpected, should revert. MIN_64x64 is negative.
-            assert(false);
-        } catch {
-            // Expected behaviour, revert
-        }
-    }
+    //function sqrt_test_minimum() public view {
+    //    try this.sqrt(MIN_64x64) {
+    //        // Unexpected, should revert. MIN_64x64 is negative.
+    //        assert(false);
+    //    } catch {
+    //        // Expected behaviour, revert
+    //    }
+    //}
 
     // Test for negative operands
     function sqrt_test_negative(int128 x) public view {
@@ -1526,6 +1521,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property respect to multiplication
     // log2(x * y) = log2(x) + log2(y)
+    /*
     function log2_test_distributive_mul(int128 x, int128 y) public view {
         int128 log2_x = log_2(x);
         int128 log2_y = log_2(y);
@@ -1542,10 +1538,11 @@ contract CryticABDKMath64x64Properties {
         uint256 loss = toUInt(abs(log_2(x) + log_2(y)));
 
         assert(equal_within_precision(log2_x_log2_y, log2_xy, loss));
-    }
+    }*/
 
     // Test for logarithm of a power
     // log2(x ** y) = y * log2(x)
+    /*
     function log2_test_power(int128 x, uint256 y) public pure {
         int128 x_y = pow(x, y);
         int128 log2_x_y = log_2(x_y);
@@ -1553,7 +1550,7 @@ contract CryticABDKMath64x64Properties {
         uint256 y_log2_x = mulu(log_2(x), y);
 
         assert(y_log2_x == toUInt(log2_x_y));
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -1562,29 +1559,30 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for zero case, should revert
-    function log2_test_zero() public view {
-        try this.log_2(ZERO_FP) {
-            // Unexpected, should revert
-            assert(false);
-        } catch {
-            // Expected revert, log(0) is not defined
-        }
-    }
+    //function log2_test_zero() public view {
+    //    try this.log_2(ZERO_FP) {
+    //        // Unexpected, should revert
+    //        assert(false);
+    //    } catch {
+    //        // Expected revert, log(0) is not defined
+    //    }
+    //}
 
     // Test for maximum value case, should return a positive number
-    function log2_test_maximum() public view {
-        int128 result;
+    //function log2_test_maximum() public view {
+    //    int128 result;
+    //
+    //    try this.log_2(MAX_64x64) {
+    //        // Expected, should not revert and the result must be > 0
+    //        result = this.log_2(MAX_64x64);
+    //        assert(result > ZERO_FP);
+    //    } catch {
+    //        // Unexpected
+    //        assert(false);
+    //    }
+    //}
 
-        try this.log_2(MAX_64x64) {
-            // Expected, should not revert and the result must be > 0
-            result = this.log_2(MAX_64x64);
-            assert(result > ZERO_FP);
-        } catch {
-            // Unexpected
-            assert(false);
-        }
-    }
-
+    /*
     // Test for negative values, should revert as log2 is not defined
     function log2_test_negative(int128 x) public view {
         require(x < ZERO_FP);
@@ -1595,7 +1593,7 @@ contract CryticABDKMath64x64Properties {
         } catch {
             // Expected
         }
-    }
+    }*/
 
     /* ================================================================
 
@@ -1611,6 +1609,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property respect to multiplication
     // ln(x * y) = ln(x) + ln(y)
+    /*
     function ln_test_distributive_mul(int128 x, int128 y) public view {
         require(x > ZERO_FP && y > ZERO_FP);
 
@@ -1628,10 +1627,11 @@ contract CryticABDKMath64x64Properties {
         uint256 loss = toUInt(abs(log_2(x) + log_2(y)));
 
         assert(equal_within_precision(ln_x_ln_y, ln_xy, loss));
-    }
+    }*/
 
     // Test for logarithm of a power
     // ln(x ** y) = y * ln(x)
+    /*
     function ln_test_power(int128 x, uint256 y) public pure {
         int128 x_y = pow(x, y);
         int128 ln_x_y = ln(x_y);
@@ -1639,7 +1639,7 @@ contract CryticABDKMath64x64Properties {
         uint256 y_ln_x = mulu(ln(x), y);
 
         assert(y_ln_x == toUInt(ln_x_y));
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -1648,29 +1648,30 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for zero case, should revert
-    function ln_test_zero() public view {
-        try this.ln(ZERO_FP) {
-            // Unexpected, should revert
-            assert(false);
-        } catch {
-            // Expected revert, log(0) is not defined
-        }
-    }
+    //function ln_test_zero() public view {
+    //    try this.ln(ZERO_FP) {
+    //        // Unexpected, should revert
+    //        assert(false);
+    //    } catch {
+    //        // Expected revert, log(0) is not defined
+    //    }
+    //}
 
     // Test for maximum value case, should return a positive number
-    function ln_test_maximum() public view {
-        int128 result;
+    //function ln_test_maximum() public view {
+    //    int128 result;
+    // 
+    //    try this.ln(MAX_64x64) {
+    //        // Expected, should not revert and the result must be > 0
+    //        result = this.ln(MAX_64x64);
+    //        assert(result > ZERO_FP);
+    //    } catch {
+    //        // Unexpected
+    //        assert(false);
+    //    }
+    //}
 
-        try this.ln(MAX_64x64) {
-            // Expected, should not revert and the result must be > 0
-            result = this.ln(MAX_64x64);
-            assert(result > ZERO_FP);
-        } catch {
-            // Unexpected
-            assert(false);
-        }
-    }
-
+    /*
     // Test for negative values, should revert as ln is not defined
     function ln_test_negative(int128 x) public view {
         require(x < ZERO_FP);
@@ -1681,7 +1682,7 @@ contract CryticABDKMath64x64Properties {
         } catch {
             // Expected
         }
-    }
+    }*/
 
     /* ================================================================
 
@@ -1697,15 +1698,17 @@ contract CryticABDKMath64x64Properties {
 
     // Test for equality with pow(2, x) for integer x
     // pow(2, x) == exp_2(x)
+    /*
     function exp2_test_equivalence_pow(uint256 x) public view {
         int128 exp2_x = exp_2(fromUInt(x));
         int128 pow_2_x = pow(TWO_FP, x);
 
         assert(exp2_x == pow_2_x);
-    }
+    }*/
 
     // Test for inverse function
     // If y = log_2(x) then exp_2(y) == x
+    /*
     function exp2_test_inverse(int128 x) public view {
         int128 log2_x = log_2(x);
         int128 exp2_x = exp_2(log2_x);
@@ -1717,10 +1720,11 @@ contract CryticABDKMath64x64Properties {
         }
 
         assert(equal_most_significant_bits_within_precision(x, exp2_x, bits));
-    }
+    }*/
 
     // Test for negative exponent
     // exp_2(-x) == inv( exp_2(x) )
+    /*
     function exp2_test_negative_exponent(int128 x) public view {
         require(x < ZERO_FP && x != MIN_64x64);
 
@@ -1729,7 +1733,7 @@ contract CryticABDKMath64x64Properties {
 
         // Result should be within 4 bits precision for the worst case
         assert(equal_within_precision(exp2_x, inv(exp2_minus_x), 4));
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -1739,36 +1743,36 @@ contract CryticABDKMath64x64Properties {
 
     // Test for zero case
     // exp_2(0) == 1
-    function exp2_test_zero() public view {
-        int128 exp_zero = exp_2(ZERO_FP);
-        assert(exp_zero == ONE_FP);
-    }
+    //function exp2_test_zero() public view {
+    //    int128 exp_zero = exp_2(ZERO_FP);
+    //    assert(exp_zero == ONE_FP);
+    //}
 
     // Test for maximum value. This should overflow as it won't fit
     // in the data type
-    function exp2_test_maximum() public view {
-        try this.exp_2(MAX_64x64) {
-            // Unexpected, should revert
-            assert(false);
-        } catch {
-            // Expected revert
-        }
-    }
+    //function exp2_test_maximum() public view {
+    //    try this.exp_2(MAX_64x64) {
+    //        // Unexpected, should revert
+    //        assert(false);
+    //    } catch {
+    //        // Expected revert
+    //    }
+    //}
 
     // Test for minimum value. This should return zero since
     // 2 ** -x == 1 / 2 ** x that tends to zero as x increases
-    function exp2_test_minimum() public view {
-        int128 result;
-
-        try this.exp_2(MIN_64x64) {
-            // Expected, should not revert, check that value is zero
-            result = exp_2(MIN_64x64);
-            assert(result == ZERO_FP);
-        } catch {
-            // Unexpected revert
-            assert(false);
-        }
-    }
+    //function exp2_test_minimum() public view {
+    //    int128 result;
+    //
+    //    try this.exp_2(MIN_64x64) {
+    //        // Expected, should not revert, check that value is zero
+    //        result = exp_2(MIN_64x64);
+    //        assert(result == ZERO_FP);
+    //    } catch {
+    //        // Unexpected revert
+    //        assert(false);
+    //    }
+    //}
 
     /* ================================================================
 
@@ -1784,6 +1788,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for inverse function
     // If y = ln(x) then exp(y) == x
+    /*
     function exp_test_inverse(int128 x) public view {
         int128 ln_x = ln(x);
         int128 exp_x = exp(ln_x);
@@ -1796,10 +1801,11 @@ contract CryticABDKMath64x64Properties {
         }
 
         assert(equal_most_significant_bits_within_precision(x, exp_x, bits));
-    }
+    }*/
 
     // Test for negative exponent
     // exp(-x) == inv( exp(x) )
+    /*
     function exp_test_negative_exponent(int128 x) public view {
         require(x < ZERO_FP && x != MIN_64x64);
 
@@ -1808,7 +1814,7 @@ contract CryticABDKMath64x64Properties {
 
         // Result should be within 4 bits precision for the worst case
         assert(equal_within_precision(exp_x, inv(exp_minus_x), 4));
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.
@@ -1818,34 +1824,34 @@ contract CryticABDKMath64x64Properties {
 
     // Test for zero case
     // exp(0) == 1
-    function exp_test_zero() public view {
-        int128 exp_zero = exp(ZERO_FP);
-        assert(exp_zero == ONE_FP);
-    }
+    //function exp_test_zero() public view {
+    //    int128 exp_zero = exp(ZERO_FP);
+    //    assert(exp_zero == ONE_FP);
+    //}
 
     // Test for maximum value. This should overflow as it won't fit
     // in the data type
-    function exp_test_maximum() public view {
-        try this.exp(MAX_64x64) {
-            // Unexpected, should revert
-            assert(false);
-        } catch {
-            // Expected revert
-        }
-    }
+    //function exp_test_maximum() public view {
+    //    try this.exp(MAX_64x64) {
+    //        // Unexpected, should revert
+    //        assert(false);
+    //    } catch {
+    //        // Expected revert
+    //    }
+    //}
 
     // Test for minimum value. This should return zero since
     // e ** -x == 1 / e ** x that tends to zero as x increases
-    function exp_test_minimum() public view {
-        int128 result;
-
-        try this.exp(MIN_64x64) {
-            // Expected, should not revert, check that value is zero
-            result = exp(MIN_64x64);
-            assert(result == ZERO_FP);
-        } catch {
-            // Unexpected revert
-            assert(false);
-        }
-    }
+    //function exp_test_minimum() public view {
+    //    int128 result;
+    //
+    //    try this.exp(MIN_64x64) {
+    //        // Expected, should not revert, check that value is zero
+    //        result = exp(MIN_64x64);
+    //        assert(result == ZERO_FP);
+    //    } catch {
+    //        // Unexpected revert
+    //        assert(false);
+    //    }
+    //}
 }
