@@ -43,7 +43,7 @@ When an invariant is explored using the symbolic engine in verification mode, th
 * **Error** ❌ A bug or a missing feature blocks the exploration or solving of some paths.
 * **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths. 
 
-In the case of `div\_test\_values(int128,int128)` and `div\_test\_negative\_divisor(int128,int128)`, there are timeout when solving some SMT constraints. Using different [SMTs solvers could work](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972). 
+In the case of `div_test_values(int128,int128)` and `div_test_negative_divisor(int128,int128)`, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
 
 The following invariants are in the process of verification but most of them will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in order to be verified in a reasonable time. 
 
