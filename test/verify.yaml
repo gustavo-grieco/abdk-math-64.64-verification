@@ -1,0 +1,47 @@
+testMode: assertion
+
+seqLen: 1
+workers: 0
+format: text
+
+symExec: true
+symExecMaxExplore: 100
+symExecMaxIters: 10
+symExecTimeout: 240
+symExecNSolvers: 10
+symExecTargets:
+#- exp2_test_equivalence_pow
+#- ln_test_negative
+#- pow_test_high_exponent
+- pow_test_zero_exponent
+- pow_test_one_exponent
+# - pow_test_base_one
+- pow_test_maximum_base
+- sub_test_non_commutative
+- neg_test_identity
+- sub_test_equivalence_to_addition
+- abs_test_negative
+#- div_test_values
+- inv_test_division
+- abs_test_positive
+- sqrt_test_negative
+- sub_test_identity
+- div_test_range
+- abs_test_subadditivity
+- inv_test_values
+- add_test_commutative
+- mul_test_identity
+- avg_test_one_value
+- add_test_associative
+- add_test_identity
+- avg_test_values_in_range
+- div_test_division_num_zero
+- avg_test_operand_order
+- div_test_division_identity
+- sub_test_neutrality
+- neg_test_double_negation
+- inv_test_sign
+#- div_test_negative_divisor
+- div_test_maximum_numerator
+
+

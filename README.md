@@ -45,7 +45,7 @@ When an invariant is explored using the symbolic engine in verification mode, th
 
 In the case of `div_test_values(int128,int128)` and `div_test_negative_divisor(int128,int128)`, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
 
-The following invariants are in the process of verification but most of them will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in order to be verified in a reasonable time. 
+The following invariants are in the process of verification or failed in the fuzzing campaign and they need to be thinked. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time. 
 
 | Invariant | Result |
 | ----- | :---: |
@@ -63,26 +63,26 @@ The following invariants are in the process of verification but most of them wil
 | `pow_test_zero_base(uint256)` | ❓ |
 | `pow_test_one_exponent(int128)` | ❓ |
 | `pow_test_base_one(uint256)` | ❓ |
-| `pow_test_product_same_base(int128, uint256, uint256)` | ❓ |
-| `pow_test_power_of_an_exponentiation(int128, uint256, uint256)` | ❓ |
+| `pow_test_product_same_base(int128, uint256, uint256)` | 💥 |
+| `pow_test_power_of_an_exponentiation(int128, uint256, uint256)` | 💥 |
 | `pow_test_distributive(int128, int128, uint256)` | ❓ |
 | `pow_test_values(int128, uint256)` | ❓ |
 | `pow_test_sign(int128, uint256)` | ❓ |
 | `pow_test_maximum_base(uint256)` | ❓ |
-| `pow_test_high_exponent(int128, uint256)` | ❓ |
-| `sqrt_test_inverse_mul(int128)` | ❓ |
-| `sqrt_test_inverse_pow(int128)` | ❓ |
+| `pow_test_high_exponent(int128, uint256)` | 💥 |
+| `sqrt_test_inverse_mul(int128)` | 💥 |
+| `sqrt_test_inverse_pow(int128)` | 💥 |
 | `sqrt_test_distributive(int128, int128)` | ❓ |
 | `log2_test_distributive_mul(int128, int128)` | ❓ |
 | `log2_test_power(int128, uint256)` | ❓ |
 | `log2_test_negative(int128)` | ❓ |
-| `ln_test_distributive_mul(int128, int128)` | ❓ |
-| `ln_test_power(int128, uint256)` | ❓ |
+| `ln_test_distributive_mul(int128, int128)` | 💥 |
+| `ln_test_power(int128, uint256)` | 💥 |
 | `ln_test_negative(int128)` | ❓ |
 | `exp2_test_equivalence_pow(uint256)` | ❓ |
-| `exp2_test_inverse(int128)` | ❓ |
+| `exp2_test_inverse(int128)` | 💥 |
 | `exp2_test_negative_exponent(int128)` | ❓ |
-| `exp_test_inverse(int128)` | ❓ |
+| `exp_test_inverse(int128)` | 💥 |
 | `exp_test_negative_exponent(int128)` | ❓ |
 
 These tables are going to be updated over time as more invariants are verified.
