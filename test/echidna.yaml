@@ -9,3 +9,6 @@ symExecMaxExplore: 100
 symExecMaxIters: 100
 symExecTimeout: 240
 symExecNSolvers: 10
+#symExecTargets:
+#  - ln_test_negative
+#  - abs_test_positive
