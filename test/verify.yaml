@@ -6,7 +6,7 @@ format: text
 
 symExec: true
 symExecMaxExplore: 100
-symExecMaxIters: 10
+symExecMaxIters: 65
 symExecTimeout: 240
 symExecNSolvers: 10
 symExecTargets:

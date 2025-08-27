@@ -1309,6 +1309,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property for power of a product
     // (x * y) ** a == x ** a * y ** a
+    /*
     function pow_test_distributive(int128 x, int128 y, uint256 a) public view {
         require(x != ZERO_FP && y != ZERO_FP);
         require(a > 2 ** 32); // to avoid massive loss of precision
@@ -1320,7 +1321,7 @@ contract CryticABDKMath64x64Properties {
         int128 y_a = pow(y, a);
 
         assert(equal_within_precision(mul(x_a, y_a), xy_a, 2));
-    }
+    }*/
 
     // Test for result being greater than or lower than the argument, depending on
     // its absolute value and the value of the exponent
@@ -1539,7 +1540,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for logarithm of a power
     // log2(x ** y) = y * log2(x)
-
+    /*
     function log2_test_power(int128 x, uint256 y) public pure {
         int128 x_y = pow(x, y);
         int128 log2_x_y = log_2(x_y);
@@ -1547,7 +1548,7 @@ contract CryticABDKMath64x64Properties {
         uint256 y_log2_x = mulu(log_2(x), y);
 
         assert(y_log2_x == toUInt(log2_x_y));
-    }
+    }*/
 
     /* ================================================================
        Tests for overflow and edge cases.

@@ -45,7 +45,7 @@ When an invariant is explored using the symbolic engine in verification mode, th
 
 In the case of `div_test_values(int128,int128)` and `div_test_negative_divisor(int128,int128)`, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
 
-The following invariants are in the process of verification or failed in the fuzzing campaign and they need to be thinked. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time. 
+The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time. 
 
 | Invariant | Result |
 | ----- | :---: |
@@ -65,7 +65,7 @@ The following invariants are in the process of verification or failed in the fuz
 | `pow_test_base_one(uint256)` | ❓ |
 | `pow_test_product_same_base(int128, uint256, uint256)` | 💥 |
 | `pow_test_power_of_an_exponentiation(int128, uint256, uint256)` | 💥 |
-| `pow_test_distributive(int128, int128, uint256)` | ❓ |
+| `pow_test_distributive(int128, int128, uint256)` | 💥 |
 | `pow_test_values(int128, uint256)` | ❓ |
 | `pow_test_sign(int128, uint256)` | ❓ |
 | `pow_test_maximum_base(uint256)` | ❓ |
@@ -74,7 +74,7 @@ The following invariants are in the process of verification or failed in the fuz
 | `sqrt_test_inverse_pow(int128)` | 💥 |
 | `sqrt_test_distributive(int128, int128)` | ❓ |
 | `log2_test_distributive_mul(int128, int128)` | ❓ |
-| `log2_test_power(int128, uint256)` | ❓ |
+| `log2_test_power(int128, uint256)` | 💥 |
 | `log2_test_negative(int128)` | ❓ |
 | `ln_test_distributive_mul(int128, int128)` | 💥 |
 | `ln_test_power(int128, uint256)` | 💥 |
@@ -89,10 +89,16 @@ These tables are going to be updated over time as more invariants are verified.
 
 ## How To Run
 
+If you want to run a preliminary fuzzing campaign, use:
+
+```
+make fuzz
+```
+
 To re-run the currently verified tests, execute:
 
 ```
-echidna . --contract CryticABDKMath64x64Properties --config test/echidna.yaml
+make verify
 ```
 
 [Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2) was used as the SMT solver. Please ensure that you install Echidna after [this PR](https://github.com/crytic/echidna/pull/1431) has been merged. 
