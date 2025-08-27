@@ -6,4 +6,4 @@ verify:
 
 fuzz:
 	@mkdir -p logs
-	echidna . --contract CryticABDKMath64x64Properties --config test/fuzz.yaml --workers 8 | tee logs/fuzz.log
+	echidna . --contract CryticABDKMath64x64Properties --config test/fuzz.yaml --timeout 3600 --workers 8 | tee logs/fuzz.log
