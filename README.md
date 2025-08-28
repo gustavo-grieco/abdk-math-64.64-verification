@@ -101,7 +101,7 @@ To re-run the currently verified tests, execute:
 make verify
 ```
 
-[Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2) was used as the SMT solver. Please ensure that you install Echidna after [this PR](https://github.com/crytic/echidna/pull/1431) has been merged. 
+To make sure the verification works as expected, please install Echidna from its latest `master` revision and [Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2).
 
 ## Changes 
 
