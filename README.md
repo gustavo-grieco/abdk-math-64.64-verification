@@ -34,6 +34,15 @@ Currently, the following test were fully verified or were fully explored without
 | `inv_test_sign(int128)` | ✅ |
 | `div_test_negative_divisor(int128,int128)` | 👍 |
 | `div_test_maximum_numerator(int128)` | ✅ |
+| `gavg_test_one_value(int128)` | 🎉 |
+| `mul_test_range(int128,int128)` | ✅ |
+| `add_test_values(int128,int128)` | ✅ |
+| `sub_test_range(int128,int128)` | ✅ |
+| `mul_test_commutative(int128,int128)` | ✅ |
+| `div_test_maximum_denominator(int128)` | ✅ |
+| `div_test_div_by_zero(int128)` | ✅ |
+| `add_test_range(int128,int128)` | ✅ |
+| `sub_test_values(int128,int128)` | ✅ |
 
 When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
 
@@ -99,6 +108,12 @@ To re-run the currently verified tests, execute:
 
 ```
 make verify
+```
+
+If you want to run the verification of a single property, use `TARGET` like this:
+
+```
+make verify TARGET=abs_test_negative
 ```
 
 To make sure the verification works as expected, please install Echidna from its latest `master` revision and [Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2).
