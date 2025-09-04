@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 import "@abdk/ABDKMath64x64.sol";
 
 contract CryticABDKMath64x64Properties {
+
+    bool public IS_TEST = true;
     /* ================================================================
        64x64 fixed-point constants used for testing specific values.
        This assumes that ABDK library's fromInt(x) works as expected.
@@ -279,7 +281,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for commutative property
     // x + y == y + x
-    function add_test_commutative(int128 x, int128 y) public pure {
+    function prove_add_commutative(int128 x, int128 y) public pure {
         int128 x_y = add(x, y);
         int128 y_x = add(y, x);
 
@@ -288,7 +290,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for associative property
     // (x + y) + z == x + (y + z)
-    function add_test_associative(int128 x, int128 y, int128 z) public pure {
+    function prove_add_associative(int128 x, int128 y, int128 z) public pure {
         int128 x_y = add(x, y);
         int128 y_z = add(y, z);
         int128 xy_z = add(x_y, z);
@@ -299,7 +301,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for identity operation
     // x + 0 == x (equivalent to x + (-x) == 0)
-    function add_test_identity(int128 x) public view {
+    function prove_add_identity(int128 x) public view {
         int128 x_0 = add(x, ZERO_FP);
 
         assert(x_0 == x);
@@ -308,7 +310,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the result increases or decreases depending
     // on the value to be added
-    function add_test_values(int128 x, int128 y) public view {
+    function prove_add_values(int128 x, int128 y) public view {
         int128 x_y = add(x, y);
 
         if (y >= ZERO_FP) {
@@ -326,7 +328,7 @@ contract CryticABDKMath64x64Properties {
 
     // The result of the addition must be between the maximum
     // and minimum allowed values for 64x64
-    function add_test_range(int128 x, int128 y) public view {
+    function prove_add_range(int128 x, int128 y) public view {
         int128 result;
         try this.add(x, y) {
             result = this.add(x, y);
@@ -394,7 +396,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test equivalence to addition
     // x - y == x + (-y)
-    function sub_test_equivalence_to_addition(int128 x, int128 y) public pure {
+    function prove_sub_equivalence_to_addition(int128 x, int128 y) public pure {
         int128 minus_y = neg(y);
         int128 addition = add(x, minus_y);
         int128 subtraction = sub(x, y);
@@ -404,7 +406,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for non-commutative property
     // x - y == -(y - x)
-    function sub_test_non_commutative(int128 x, int128 y) public pure {
+    function prove_sub_non_commutative(int128 x, int128 y) public pure {
         int128 x_y = sub(x, y);
         int128 y_x = sub(y, x);
 
@@ -413,7 +415,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for identity operation
     // x - 0 == x  (equivalent to x - x == 0)
-    function sub_test_identity(int128 x) public view {
+    function prove_sub_identity(int128 x) public view {
         int128 x_0 = sub(x, ZERO_FP);
 
         assert(x_0 == x);
@@ -422,7 +424,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for neutrality over addition and subtraction
     // (x - y) + y == (x + y) - y == x
-    function sub_test_neutrality(int128 x, int128 y) public pure {
+    function prove_sub_neutrality(int128 x, int128 y) public pure {
         int128 x_minus_y = sub(x, y);
         int128 x_plus_y = add(x, y);
 
@@ -435,7 +437,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the result increases or decreases depending
     // on the value to be subtracted
-    function sub_test_values(int128 x, int128 y) public view {
+    function prove_sub_values(int128 x, int128 y) public view {
         int128 x_y = sub(x, y);
 
         if (y >= ZERO_FP) {
@@ -453,7 +455,7 @@ contract CryticABDKMath64x64Properties {
 
     // The result of the subtraction must be between the maximum
     // and minimum allowed values for 64x64
-    function sub_test_range(int128 x, int128 y) public view {
+    function prove_sub_range(int128 x, int128 y) public view {
         int128 result;
         try this.sub(x, y) {
             result = this.sub(x, y);
@@ -522,7 +524,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for commutative property
     // x * y == y * x
-    function mul_test_commutative(int128 x, int128 y) public pure {
+    function prove_mul_commutative(int128 x, int128 y) public pure {
         int128 x_y = mul(x, y);
         int128 y_x = mul(y, x);
 
@@ -531,7 +533,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for associative property
     // (x * y) * z == x * (y * z)
-    function mul_test_associative(int128 x, int128 y, int128 z) public view {
+    function prove_mul_associative(int128 x, int128 y, int128 z) public view {
         int128 x_y = mul(x, y);
         int128 y_z = mul(y, z);
         int128 xy_z = mul(x_y, z);
@@ -552,7 +554,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property
     // x * (y + z) == x * y + x * z
-    function mul_test_distributive(int128 x, int128 y, int128 z) public view {
+    function prove_mul_distributive(int128 x, int128 y, int128 z) public view {
         int128 y_plus_z = add(y, z);
         int128 x_times_y_plus_z = mul(x, y_plus_z);
 
@@ -577,7 +579,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for identity operation
     // x * 1 == x  (also check that x * 0 == 0)
-    function mul_test_identity(int128 x) public view {
+    function prove_mul_identity(int128 x) public view {
         int128 x_1 = mul(x, ONE_FP);
         int128 x_0 = mul(x, ZERO_FP);
 
@@ -588,7 +590,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the result increases or decreases depending
     // on the value to be added
-    function mul_test_values(int128 x, int128 y) public view {
+    function prove_mul_values(int128 x, int128 y) public view {
         require(x != ZERO_FP && y != ZERO_FP);
 
         int128 x_y = mul(x, y);
@@ -618,7 +620,7 @@ contract CryticABDKMath64x64Properties {
 
     // The result of the multiplication must be between the maximum
     // and minimum allowed values for 64x64
-    function mul_test_range(int128 x, int128 y) public view {
+    function prove_mul_range(int128 x, int128 y) public view {
         int128 result;
         try this.mul(x, y) {
             result = this.mul(x, y);
@@ -669,7 +671,7 @@ contract CryticABDKMath64x64Properties {
     // Test for identity property
     // x / 1 == x (equivalent to x / x == 1)
     // Moreover, x/x should not revert unless x == 0
-    function div_test_division_identity(int128 x) public view {
+    function prove_div_division_identity(int128 x) public view {
         int128 div_1 = div(x, ONE_FP);
         assert(x == div_1);
 
@@ -687,7 +689,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for negative divisor
     // x / -y == -(x / y)
-    function div_test_negative_divisor(int128 x, int128 y) public view {
+    function prove_div_negative_divisor(int128 x, int128 y) public view {
         require(y < ZERO_FP);
 
         int128 x_y = div(x, y);
@@ -698,7 +700,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for division with 0 as numerator
     // 0 / x = 0
-    function div_test_division_num_zero(int128 x) public view {
+    function prove_div_division_num_zero(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 div_0 = div(ZERO_FP, x);
@@ -708,7 +710,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the absolute value of the result increases or
     // decreases depending on the denominator's absolute value
-    function div_test_values(int128 x, int128 y) public view {
+    function prove_div_values(int128 x, int128 y) public view {
         require(y != ZERO_FP);
 
         int128 x_y = abs(div(x, y));
@@ -727,7 +729,7 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for division by zero
-    function div_test_div_by_zero(int128 x) public view {
+    function prove_div_div_by_zero(int128 x) public view {
         try this.div(x, ZERO_FP) {
             // Unexpected, this should revert
             assert(false);
@@ -737,7 +739,7 @@ contract CryticABDKMath64x64Properties {
     }
 
     // Test for division by a large value, the result should be less than one
-    function div_test_maximum_denominator(int128 x) public view {
+    function prove_div_maximum_denominator(int128 x) public view {
         int128 div_large = div(x, MAX_64x64);
 
         assert(abs(div_large) <= ONE_FP);
@@ -745,7 +747,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for division of a large value
     // This should revert if |x| < 1 as it would return a value higher than max
-    function div_test_maximum_numerator(int128 x) public view {
+    function prove_div_maximum_numerator(int128 x) public view {
         int128 div_large;
 
         try this.div(MAX_64x64, x) {
@@ -759,7 +761,7 @@ contract CryticABDKMath64x64Properties {
     }
 
     // Test for values in range
-    function div_test_range(int128 x, int128 y) public view {
+    function prove_div_range(int128 x, int128 y) public view {
         int128 result;
 
         try this.div(x, y) {
@@ -785,7 +787,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for the double negation
     // -(-x) == x
-    function neg_test_double_negation(int128 x) public pure {
+    function prove_neg_double_negation(int128 x) public pure {
         int128 double_neg = neg(neg(x));
 
         assert(x == double_neg);
@@ -793,7 +795,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for the identity operation
     // x + (-x) == 0
-    function neg_test_identity(int128 x) public view {
+    function prove_neg_identity(int128 x) public view {
         int128 neg_x = neg(x);
 
         assert(add(x, neg_x) == ZERO_FP);
@@ -846,7 +848,7 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test that the absolute value is always positive
-    function abs_test_positive(int128 x) public view {
+    function prove_abs_positive(int128 x) public view {
         int128 abs_x = abs(x);
 
         assert(abs_x >= ZERO_FP);
@@ -854,7 +856,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the absolute value of a number equals the
     // absolute value of the negative of the same number
-    function abs_test_negative(int128 x) public pure {
+    function prove_abs_negative(int128 x) public pure {
         int128 abs_x = abs(x);
         int128 abs_minus_x = abs(neg(x));
 
@@ -864,7 +866,7 @@ contract CryticABDKMath64x64Properties {
     // Test the multiplicativeness property
     // | x * y | == |x| * |y|
 
-    function abs_test_multiplicativeness(int128 x, int128 y) public pure {
+    function prove_abs_multiplicativeness(int128 x, int128 y) public pure {
         int128 abs_x = abs(x);
         int128 abs_y = abs(y);
         int128 abs_xy = abs(mul(x, y));
@@ -879,7 +881,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test the subadditivity property
     // | x + y | <= |x| + |y|
-    function abs_test_subadditivity(int128 x, int128 y) public pure {
+    function prove_abs_subadditivity(int128 x, int128 y) public pure {
         int128 abs_x = abs(x);
         int128 abs_y = abs(y);
         int128 abs_xy = abs(add(x, y));
@@ -944,7 +946,7 @@ contract CryticABDKMath64x64Properties {
     // Test that the inverse of the inverse is close enough to the
     // original number
 
-    function inv_test_double_inverse(int128 x) public view {
+    function prove_inv_double_inverse(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 double_inv_x = inv(inv(x));
@@ -956,7 +958,7 @@ contract CryticABDKMath64x64Properties {
     }
 
     // Test equivalence with division
-    function inv_test_division(int128 x) public view {
+    function prove_inv_division(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 inv_x = inv(x);
@@ -967,7 +969,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test the anticommutativity of the division
     // x / y == 1 / (y / x)
-        function inv_test_division_noncommutativity(int128 x, int128 y) public view {
+        function prove_inv_division_noncommutativity(int128 x, int128 y) public view {
         require(x != ZERO_FP && y != ZERO_FP);
 
         int128 x_y = div(x, y);
@@ -984,7 +986,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test the multiplication of inverses
     // 1/(x * y) == 1/x * 1/y
-    function inv_test_multiplication(int128 x, int128 y) public view {
+    function prove_inv_multiplication(int128 x, int128 y) public view {
         require(x != ZERO_FP && y != ZERO_FP);
 
         int128 inv_x = inv(x);
@@ -1009,7 +1011,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test identity property
     // Intermediate result should have at least REQUIRED_SIGNIFICANT_BITS
-    function inv_test_identity(int128 x) public view {
+    function prove_inv_identity(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 inv_x = inv(x);
@@ -1026,7 +1028,7 @@ contract CryticABDKMath64x64Properties {
     // Test that the absolute value of the result is in range zero-one
     // if x is greater than one, else, the absolute value of the result
     // must be greater than one
-    function inv_test_values(int128 x) public view {
+    function prove_inv_values(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 abs_inv_x = abs(inv(x));
@@ -1039,7 +1041,7 @@ contract CryticABDKMath64x64Properties {
     }
 
     // Test that the result has the same sign as the argument
-    function inv_test_sign(int128 x) public view {
+    function prove_inv_sign(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 inv_x = inv(x);
@@ -1105,7 +1107,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the result is between the two operands
     // avg(x, y) >= min(x, y) && avg(x, y) <= max(x, y)
-    function avg_test_values_in_range(int128 x, int128 y) public pure {
+    function prove_avg_values_in_range(int128 x, int128 y) public pure {
         int128 avg_xy = avg(x, y);
 
         if (x >= y) {
@@ -1117,7 +1119,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the average of the same number is itself
     // avg(x, x) == x
-    function avg_test_one_value(int128 x) public pure {
+    function prove_avg_one_value(int128 x) public pure {
         int128 avg_x = avg(x, x);
 
         assert(avg_x == x);
@@ -1125,7 +1127,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the order of operands is irrelevant
     // avg(x, y) == avg(y, x)
-    function avg_test_operand_order(int128 x, int128 y) public pure {
+    function prove_avg_operand_order(int128 x, int128 y) public pure {
         int128 avg_xy = avg(x, y);
         int128 avg_yx = avg(y, x);
 
@@ -1176,7 +1178,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the result is between the two operands
     // gavg(x, y) >= min(x, y) && gavg(x, y) <= max(x, y)
-    function gavg_test_values_in_range(int128 x, int128 y) public view {
+    function prove_gavg_values_in_range(int128 x, int128 y) public view {
         int128 gavg_xy = gavg(x, y);
 
         if (x == ZERO_FP || y == ZERO_FP) {
@@ -1192,7 +1194,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the average of the same number is itself
     // gavg(x, x) == | x |
-    function gavg_test_one_value(int128 x) public pure {
+    function prove_gavg_one_value(int128 x) public pure {
         int128 gavg_x = gavg(x, x);
 
         assert(gavg_x == abs(x));
@@ -1200,7 +1202,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test that the order of operands is irrelevant
     // gavg(x, y) == gavg(y, x)
-    function gavg_test_operand_order(int128 x, int128 y) public pure {
+    function prove_gavg_operand_order(int128 x, int128 y) public pure {
         int128 gavg_xy = gavg(x, y);
         int128 gavg_yx = gavg(y, x);
 
@@ -1251,7 +1253,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for zero exponent
     // x ** 0 == 1
-    function pow_test_zero_exponent(int128 x) public view {
+    function prove_pow_zero_exponent(int128 x) public view {
         int128 x_pow_0 = pow(x, 0);
 
         assert(x_pow_0 == ONE_FP);
@@ -1259,7 +1261,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for zero base
     // 0 ** x == 0 (for positive x)
-    function pow_test_zero_base(uint256 x) public view {
+    function prove_pow_zero_base(uint256 x) public view {
         require(x != 0);
 
         int128 zero_pow_x = pow(ZERO_FP, x);
@@ -1269,7 +1271,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for exponent one
     // x ** 1 == x
-    function pow_test_one_exponent(int128 x) public pure {
+    function prove_pow_one_exponent(int128 x) public pure {
         int128 x_pow_1 = pow(x, 1);
 
         assert(x_pow_1 == x);
@@ -1277,7 +1279,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for base one
     // 1 ** x == 1
-    function pow_test_base_one(uint256 x) public view {
+    function prove_pow_base_one(uint256 x) public view {
         int128 one_pow_x = pow(ONE_FP, x);
 
         assert(one_pow_x == ONE_FP);
@@ -1285,7 +1287,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for product of powers of the same base
     // x ** a * x ** b == x ** (a + b)
-    /*function pow_test_product_same_base(int128 x, uint256 a, uint256 b) public view {
+    /*function prove_pow_product_same_base(int128 x, uint256 a, uint256 b) public view {
         require(x != ZERO_FP);
 
         int128 x_a = pow(x, a);
@@ -1297,7 +1299,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for power of an exponentiation
     // (x ** a) ** b == x ** (a * b)
-    /*function pow_test_power_of_an_exponentiation(int128 x, uint256 a, uint256 b) public view {
+    /*function prove_pow_power_of_an_exponentiation(int128 x, uint256 a, uint256 b) public view {
         require(x != ZERO_FP);
 
         int128 x_a = pow(x, a);
@@ -1310,7 +1312,7 @@ contract CryticABDKMath64x64Properties {
     // Test for distributive property for power of a product
     // (x * y) ** a == x ** a * y ** a
     /*
-    function pow_test_distributive(int128 x, int128 y, uint256 a) public view {
+    function prove_pow_distributive(int128 x, int128 y, uint256 a) public view {
         require(x != ZERO_FP && y != ZERO_FP);
         require(a > 2 ** 32); // to avoid massive loss of precision
 
@@ -1325,7 +1327,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for result being greater than or lower than the argument, depending on
     // its absolute value and the value of the exponent
-    function pow_test_values(int128 x, uint256 a) public view {
+    function prove_pow_values(int128 x, uint256 a) public view {
         require(x != ZERO_FP);
 
         int128 x_a = pow(x, a);
@@ -1341,7 +1343,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for result sign: if the exponent is even, sign is positive
     // if the exponent is odd, preserves the sign of the base
-    function pow_test_sign(int128 x, uint256 a) public view {
+    function prove_pow_sign(int128 x, uint256 a) public view {
         require(x != ZERO_FP && a != 0);
 
         int128 x_a = pow(x, a);
@@ -1370,7 +1372,7 @@ contract CryticABDKMath64x64Properties {
        ================================================================ */
 
     // Test for maximum base and exponent > 1
-    function pow_test_maximum_base(uint256 a) public view {
+    function prove_pow_maximum_base(uint256 a) public view {
         require(a > 1);
 
         try this.pow(MAX_64x64, a) {
@@ -1382,7 +1384,7 @@ contract CryticABDKMath64x64Properties {
     }
 
     // Test for abs(base) < 1 and high exponent
-    /*function pow_test_high_exponent(int128 x, uint256 a) public view {
+    /*function prove_pow_high_exponent(int128 x, uint256 a) public view {
         require(abs(x) < ONE_FP && a > 2 ** 64);
 
         int128 result = pow(x, a);
@@ -1405,7 +1407,7 @@ contract CryticABDKMath64x64Properties {
     // Test for the inverse operation
     // sqrt(x) * sqrt(x) == x
 
-    /*function sqrt_test_inverse_mul(int128 x) public view {
+    /*function prove_sqrt_inverse_mul(int128 x) public view {
         require(x >= ZERO_FP);
 
         int128 sqrt_x = sqrt(x);
@@ -1424,7 +1426,7 @@ contract CryticABDKMath64x64Properties {
     // Test for the inverse operation
     // sqrt(x) ** 2 == x
 
-    /*function sqrt_test_inverse_pow(int128 x) public view {
+    /*function prove_sqrt_inverse_pow(int128 x) public view {
         require(x >= ZERO_FP);
 
         int128 sqrt_x = sqrt(x);
@@ -1442,7 +1444,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property respect to the multiplication
     // sqrt(x) * sqrt(y) == sqrt(x * y)
-    function sqrt_test_distributive(int128 x, int128 y) public view {
+    function prove_sqrt_distributive(int128 x, int128 y) public view {
         require(x >= ZERO_FP && y >= ZERO_FP);
 
         int128 sqrt_x = sqrt(x);
@@ -1494,7 +1496,7 @@ contract CryticABDKMath64x64Properties {
     //}
 
     // Test for negative operands
-    function sqrt_test_negative(int128 x) public view {
+    function prove_sqrt_negative(int128 x) public view {
         require(x < ZERO_FP);
 
         try this.sqrt(x) {
@@ -1520,7 +1522,7 @@ contract CryticABDKMath64x64Properties {
     // Test for distributive property respect to multiplication
     // log2(x * y) = log2(x) + log2(y)
 
-    function log2_test_distributive_mul(int128 x, int128 y) public view {
+    function prove_log2_distributive_mul(int128 x, int128 y) public view {
         int128 log2_x = log_2(x);
         int128 log2_y = log_2(y);
         int128 log2_x_log2_y = add(log2_x, log2_y);
@@ -1541,7 +1543,7 @@ contract CryticABDKMath64x64Properties {
     // Test for logarithm of a power
     // log2(x ** y) = y * log2(x)
     /*
-    function log2_test_power(int128 x, uint256 y) public pure {
+    function prove_log2_power(int128 x, uint256 y) public pure {
         int128 x_y = pow(x, y);
         int128 log2_x_y = log_2(x_y);
 
@@ -1582,7 +1584,7 @@ contract CryticABDKMath64x64Properties {
 
 
     // Test for negative values, should revert as log2 is not defined
-    function log2_test_negative(int128 x) public view {
+    function prove_log2_negative(int128 x) public view {
         require(x < ZERO_FP);
 
         try this.log_2(x) {
@@ -1608,7 +1610,7 @@ contract CryticABDKMath64x64Properties {
     // Test for distributive property respect to multiplication
     // ln(x * y) = ln(x) + ln(y)
     /*
-    function ln_test_distributive_mul(int128 x, int128 y) public view {
+    function prove_ln_distributive_mul(int128 x, int128 y) public view {
         require(x > ZERO_FP && y > ZERO_FP);
 
         int128 ln_x = ln(x);
@@ -1630,7 +1632,7 @@ contract CryticABDKMath64x64Properties {
     // Test for logarithm of a power
     // ln(x ** y) = y * ln(x)
 
-    /*function ln_test_power(int128 x, uint256 y) public pure {
+    /*function prove_ln_power(int128 x, uint256 y) public pure {
         int128 x_y = pow(x, y);
         int128 ln_x_y = ln(x_y);
 
@@ -1671,7 +1673,7 @@ contract CryticABDKMath64x64Properties {
 
 
     // Test for negative values, should revert as ln is not defined
-    function ln_test_negative(int128 x) public view {
+    function prove_ln_negative(int128 x) public view {
         require(x < ZERO_FP);
 
         try this.ln(x) {
@@ -1697,7 +1699,7 @@ contract CryticABDKMath64x64Properties {
     // Test for equality with pow(2, x) for integer x
     // pow(2, x) == exp_2(x)
 
-    function exp2_test_equivalence_pow(uint256 x) public view {
+    function prove_exp2_equivalence_pow(uint256 x) public view {
         int128 exp2_x = exp_2(fromUInt(x));
         int128 pow_2_x = pow(TWO_FP, x);
 
@@ -1706,7 +1708,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for inverse function
     // If y = log_2(x) then exp_2(y) == x
-    /*function exp2_test_inverse(int128 x) public view {
+    /*function prove_exp2_inverse(int128 x) public view {
         int128 log2_x = log_2(x);
         int128 exp2_x = exp_2(log2_x);
 
@@ -1722,7 +1724,7 @@ contract CryticABDKMath64x64Properties {
     // Test for negative exponent
     // exp_2(-x) == inv( exp_2(x) )
 
-    function exp2_test_negative_exponent(int128 x) public view {
+    function prove_exp2_negative_exponent(int128 x) public view {
         require(x < ZERO_FP && x != MIN_64x64);
 
         int128 exp2_x = exp_2(x);
@@ -1786,7 +1788,7 @@ contract CryticABDKMath64x64Properties {
     // Test for inverse function
     // If y = ln(x) then exp(y) == x
 
-    /*function exp_test_inverse(int128 x) public view {
+    /*function prove_exp_inverse(int128 x) public view {
         int128 ln_x = ln(x);
         int128 exp_x = exp(ln_x);
         int128 log2_x = log_2(x);
@@ -1803,7 +1805,7 @@ contract CryticABDKMath64x64Properties {
     // Test for negative exponent
     // exp(-x) == inv( exp(x) )
     /*
-    function exp_test_negative_exponent(int128 x) public view {
+    function prove_exp_negative_exponent(int128 x) public view {
         require(x < ZERO_FP && x != MIN_64x64);
 
         int128 exp_x = exp(x);

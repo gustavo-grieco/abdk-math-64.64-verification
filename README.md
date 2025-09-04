@@ -8,41 +8,41 @@ Currently, the following test were fully verified or were fully explored without
 
 | Invariant | Result |
 | ----- | :---: |
-| `sub_test_non_commutative(int128,int128)` | ✅ |
-| `neg_test_identity(int128)` | ✅ |
-| `sub_test_equivalence_to_addition(int128,int128)` | ✅ |
-| `abs_test_negative(int128)` | ✅ |
-| `div_test_values(int128,int128)` | 👍 |
-| `inv_test_division(int128)` | ✅ |
-| `abs_test_positive(int128)` | ✅ |
-| `sqrt_test_negative(int128)` | ✅ |
-| `sub_test_identity(int128)` | ✅ |
-| `div_test_range(int128,int128)` | ✅ |
-| `abs_test_subadditivity(int128,int128)` | ✅ |
-| `inv_test_values(int128)` | ✅ |
-| `add_test_commutative(int128,int128)` | ✅ |
-| `mul_test_identity(int128)` | ✅ |
-| `avg_test_one_value(int128)` | ✅ |
-| `add_test_associative(int128,int128,int128)` | ✅ |
-| `add_test_identity(int128)` | ✅ |
-| `avg_test_values_in_range(int128,int128)` | ✅ |
-| `div_test_division_num_zero(int128)` | ✅ |
-| `avg_test_operand_order(int128,int128)` | ✅ |
-| `div_test_division_identity(int128)` | ✅ |
-| `sub_test_neutrality(int128,int128)` | ✅ |
-| `neg_test_double_negation(int128)` | ✅ |
-| `inv_test_sign(int128)` | ✅ |
-| `div_test_negative_divisor(int128,int128)` | 👍 |
-| `div_test_maximum_numerator(int128)` | ✅ |
-| `gavg_test_one_value(int128)` | 🎉 |
-| `mul_test_range(int128,int128)` | ✅ |
-| `add_test_values(int128,int128)` | ✅ |
-| `sub_test_range(int128,int128)` | ✅ |
-| `mul_test_commutative(int128,int128)` | ✅ |
-| `div_test_maximum_denominator(int128)` | ✅ |
-| `div_test_div_by_zero(int128)` | ✅ |
-| `add_test_range(int128,int128)` | ✅ |
-| `sub_test_values(int128,int128)` | ✅ |
+| `prove_sub_non_commutative(int128,int128)` | ✅ |
+| `prove_neg_identity(int128)` | ✅ |
+| `prove_sub_equivalence_to_addition(int128,int128)` | ✅ |
+| `prove_abs_negative(int128)` | ✅ |
+| `prove_div_values(int128,int128)` | 👍 |
+| `prove_inv_division(int128)` | ✅ |
+| `prove_abs_positive(int128)` | ✅ |
+| `prove_sqrt_negative(int128)` | ✅ |
+| `prove_sub_identity(int128)` | ✅ |
+| `prove_div_range(int128,int128)` | ✅ |
+| `prove_abs_subadditivity(int128,int128)` | ✅ |
+| `prove_inv_values(int128)` | ✅ |
+| `prove_add_commutative(int128,int128)` | ✅ |
+| `prove_mul_identity(int128)` | ✅ |
+| `prove_avg_one_value(int128)` | ✅ |
+| `prove_add_associative(int128,int128,int128)` | ✅ |
+| `prove_add_identity(int128)` | ✅ |
+| `prove_avg_values_in_range(int128,int128)` | ✅ |
+| `prove_div_division_num_zero(int128)` | ✅ |
+| `prove_avg_operand_order(int128,int128)` | ✅ |
+| `prove_div_division_identity(int128)` | ✅ |
+| `prove_sub_neutrality(int128,int128)` | ✅ |
+| `prove_neg_double_negation(int128)` | ✅ |
+| `prove_inv_sign(int128)` | ✅ |
+| `prove_div_negative_divisor(int128,int128)` | 👍 |
+| `prove_div_maximum_numerator(int128)` | ✅ |
+| `prove_gavg_one_value(int128)` | 👍 |
+| `prove_mul_range(int128,int128)` | ✅ |
+| `prove_add_values(int128,int128)` | ✅ |
+| `prove_sub_range(int128,int128)` | ✅ |
+| `prove_mul_commutative(int128,int128)` | ✅ |
+| `prove_div_maximum_denominator(int128)` | ✅ |
+| `prove_div_div_by_zero(int128)` | ✅ |
+| `prove_add_range(int128,int128)` | ✅ |
+| `prove_sub_values(int128,int128)` | ✅ |
 
 When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
 
@@ -50,49 +50,49 @@ When an invariant is explored using the symbolic engine in verification mode, th
 * **Passed**  👍 The code was fully explored without detecting any counterexamples, but the SMT solver cannot determine the answer to some of the queries (e.g. it timed out), so the assertion could still fail.
 * **Failed** 💥 The exploration revealed a counterexample that was successfully replayed in concrete mode.
 * **Error** ❌ A bug or a missing feature blocks the exploration or solving of some paths.
-* **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths. 
+* **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths.
 
-In the case of `div_test_values(int128,int128)` and `div_test_negative_divisor(int128,int128)`, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
+In the case of `prove_div_values(int128,int128)` and `prove_div_negative_divisor(int128,int128)`, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
 
-The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time. 
+The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time.
 
 | Invariant | Result |
 | ----- | :---: |
-| `mul_test_associative(int128, int128, int128)` | ❓ |
-| `mul_test_distributive(int128, int128, int128)` | ❓ |
-| `mul_test_values(int128, int128)` | ❓ |
-| `abs_test_multiplicativeness(int128, int128)` | ❓ |
-| `inv_test_double_inverse(int128)` | ❓ |
-| `inv_test_division_noncommutativity(int128, int128)` | ❓ |
-| `inv_test_multiplication(int128, int128)` | ❓ |
-| `inv_test_identity(int128)` | ❓ |
-| `gavg_test_values_in_range(int128, int128)` | ❓ |
-| `gavg_test_operand_order(int128, int128)` | ❓ |
-| `pow_test_zero_exponent(int128)`  | ❓ |
-| `pow_test_zero_base(uint256)` | ❓ |
-| `pow_test_one_exponent(int128)` | ❓ |
-| `pow_test_base_one(uint256)` | ❓ |
-| `pow_test_product_same_base(int128, uint256, uint256)` | 💥 |
-| `pow_test_power_of_an_exponentiation(int128, uint256, uint256)` | 💥 |
-| `pow_test_distributive(int128, int128, uint256)` | 💥 |
-| `pow_test_values(int128, uint256)` | ❓ |
-| `pow_test_sign(int128, uint256)` | ❓ |
-| `pow_test_maximum_base(uint256)` | ❓ |
-| `pow_test_high_exponent(int128, uint256)` | 💥 |
-| `sqrt_test_inverse_mul(int128)` | 💥 |
-| `sqrt_test_inverse_pow(int128)` | 💥 |
-| `sqrt_test_distributive(int128, int128)` | ❓ |
-| `log2_test_distributive_mul(int128, int128)` | ❓ |
-| `log2_test_power(int128, uint256)` | 💥 |
-| `log2_test_negative(int128)` | ❓ |
-| `ln_test_distributive_mul(int128, int128)` | 💥 |
-| `ln_test_power(int128, uint256)` | 💥 |
-| `ln_test_negative(int128)` | ❓ |
-| `exp2_test_equivalence_pow(uint256)` | ❓ |
-| `exp2_test_inverse(int128)` | 💥 |
-| `exp2_test_negative_exponent(int128)` | ❓ |
-| `exp_test_inverse(int128)` | 💥 |
-| `exp_test_negative_exponent(int128)` | ❓ |
+| `prove_mul_associative(int128, int128, int128)` | ❓ |
+| `prove_mul_distributive(int128, int128, int128)` | ❓ |
+| `prove_mul_values(int128, int128)` | ❓ |
+| `prove_abs_multiplicativeness(int128, int128)` | ❓ |
+| `prove_inv_double_inverse(int128)` | ❓ |
+| `prove_inv_division_noncommutativity(int128, int128)` | ❓ |
+| `prove_inv_multiplication(int128, int128)` | ❓ |
+| `prove_inv_identity(int128)` | ❓ |
+| `prove_gavg_values_in_range(int128, int128)` | ❓ |
+| `prove_gavg_operand_order(int128, int128)` | ❓ |
+| `prove_pow_zero_exponent(int128)`  | ❓ |
+| `prove_pow_zero_base(uint256)` | ❓ |
+| `prove_pow_one_exponent(int128)` | ❓ |
+| `prove_pow_base_one(uint256)` | ❓ |
+| `prove_pow_product_same_base(int128, uint256, uint256)` | 💥 |
+| `prove_pow_power_of_an_exponentiation(int128, uint256, uint256)` | 💥 |
+| `prove_pow_distributive(int128, int128, uint256)` | 💥 |
+| `prove_pow_values(int128, uint256)` | ❓ |
+| `prove_pow_sign(int128, uint256)` | ❓ |
+| `prove_pow_maximum_base(uint256)` | ❓ |
+| `prove_pow_high_exponent(int128, uint256)` | 💥 |
+| `prove_sqrt_inverse_mul(int128)` | 💥 |
+| `prove_sqrt_inverse_pow(int128)` | 💥 |
+| `prove_sqrt_distributive(int128, int128)` | ❓ |
+| `prove_log2_distributive_mul(int128, int128)` | ❓ |
+| `prove_log2_power(int128, uint256)` | 💥 |
+| `prove_log2_negative(int128)` | ❓ |
+| `prove_ln_distributive_mul(int128, int128)` | 💥 |
+| `prove_ln_power(int128, uint256)` | 💥 |
+| `prove_ln_negative(int128)` | ❓ |
+| `prove_exp2_equivalence_pow(uint256)` | ❓ |
+| `prove_exp2_inverse(int128)` | 💥 |
+| `prove_exp2_negative_exponent(int128)` | ❓ |
+| `prove_exp_inverse(int128)` | 💥 |
+| `prove_exp_negative_exponent(int128)` | ❓ |
 
 These tables are going to be updated over time as more invariants are verified.
 
@@ -110,17 +110,22 @@ To re-run the currently verified tests, execute:
 make verify
 ```
 
-If you want to run the verification of a single property, use `TARGET` like this:
+If you want to run the verification of a single property, use `T` like this:
 
 ```
-make verify TARGET=abs_test_negative
+make verify T=prove_abs_negative
+```
+
+Alternatively, hevm can be used directly, even selecting an invariant:
+```
+make verify-hevm T=prove_abs_negative
 ```
 
 To make sure the verification works as expected, please install Echidna from its latest `master` revision and [Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2).
 
-## Changes 
+## Changes
 
-We made a few small modifications to this codebase: 
+We made a few small modifications to this codebase:
 
 * Adapted the header for using Foundry libraries and remappings.
 * Commented out properties without arguments. These are actually unit tests and will be converted into Foundry tests.
