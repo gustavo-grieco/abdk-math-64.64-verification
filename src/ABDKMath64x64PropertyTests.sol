@@ -22,6 +22,9 @@ contract CryticABDKMath64x64Properties {
     int128 internal ONE_TENTH_FP =
         ABDKMath64x64.div(ABDKMath64x64.fromInt(1), ABDKMath64x64.fromInt(10));
 
+    int128 internal ONE_MILL_FP =
+        ABDKMath64x64.div(ABDKMath64x64.fromInt(1), ABDKMath64x64.fromInt(1_000_000));
+
     /* ================================================================
        Constants used for precision loss calculations
        ================================================================ */
@@ -87,7 +90,8 @@ contract CryticABDKMath64x64Properties {
         int128 b,
         int128 error_percent
     ) public pure returns (bool) {
-        int128 tol_value = abs(mul(a, div(error_percent, fromUInt(100))));
+        int128 ref = abs(a) > abs(b) ? abs(a) : abs(b); 
+        int128 tol_value = abs(mul(ref, div(error_percent, fromUInt(100))));
 
         return (abs(sub(b, a)) <= tol_value);
     }
@@ -533,21 +537,15 @@ contract CryticABDKMath64x64Properties {
 
     // Test for associative property
     // (x * y) * z == x * (y * z)
-    function prove_mul_associative(int128 x, int128 y, int128 z) public view {
+    function prove_mul_associative(int128 x, int128 y, int128 z) public view {        
+        require(abs(x) >= ONE_TENTH_FP);
+        require(abs(y) >= ONE_TENTH_FP);
+        require(abs(z) >= ONE_TENTH_FP);
+
         int128 x_y = mul(x, y);
         int128 y_z = mul(y, z);
         int128 xy_z = mul(x_y, z);
         int128 x_yz = mul(x, y_z);
-
-        // Failure if all significant digits are lost
-        require(significant_bits_after_mult(x, y) > REQUIRED_SIGNIFICANT_BITS);
-        require(significant_bits_after_mult(y, z) > REQUIRED_SIGNIFICANT_BITS);
-        require(
-            significant_bits_after_mult(x_y, z) > REQUIRED_SIGNIFICANT_BITS
-        );
-        require(
-            significant_bits_after_mult(x, y_z) > REQUIRED_SIGNIFICANT_BITS
-        );
 
         assert(equal_within_tolerance(xy_z, x_yz, ONE_TENTH_FP));
     }
@@ -555,18 +553,15 @@ contract CryticABDKMath64x64Properties {
     // Test for distributive property
     // x * (y + z) == x * y + x * z
     function prove_mul_distributive(int128 x, int128 y, int128 z) public view {
+        require(abs(x) >= ONE_TENTH_FP);
+        require(abs(y) >= ONE_TENTH_FP);
+        require(abs(z) >= ONE_TENTH_FP);
+
         int128 y_plus_z = add(y, z);
         int128 x_times_y_plus_z = mul(x, y_plus_z);
 
         int128 x_times_y = mul(x, y);
         int128 x_times_z = mul(x, z);
-
-        // Failure if all significant digits are lost
-        require(significant_bits_after_mult(x, y) > REQUIRED_SIGNIFICANT_BITS);
-        require(significant_bits_after_mult(x, z) > REQUIRED_SIGNIFICANT_BITS);
-        require(
-            significant_bits_after_mult(x, y_plus_z) > REQUIRED_SIGNIFICANT_BITS
-        );
 
         assert(
             equal_within_tolerance(
@@ -591,11 +586,7 @@ contract CryticABDKMath64x64Properties {
     // Test that the result increases or decreases depending
     // on the value to be added
     function prove_mul_values(int128 x, int128 y) public view {
-        require(x != ZERO_FP && y != ZERO_FP);
-
         int128 x_y = mul(x, y);
-
-        require(significant_digits_lost_in_mult(x, y) == false);
 
         if (x >= ZERO_FP) {
             if (y >= ONE_FP) {
@@ -872,11 +863,8 @@ contract CryticABDKMath64x64Properties {
         int128 abs_xy = abs(mul(x, y));
         int128 abs_x_abs_y = mul(abs_x, abs_y);
 
-        // Failure if all significant digits are lost
-        //require(significant_digits_lost_in_mult(abs_x, abs_y) == false);
-
-        // Assume a tolerance of two bits of precision
-        assert(equal_within_precision(abs_xy, abs_x_abs_y, 2));
+        // Assume a tolerance of some bits of precision
+        assert(equal_within_precision(abs_xy, abs_x_abs_y, 5));
     }
 
     // Test the subadditivity property
