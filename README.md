@@ -43,6 +43,7 @@ Currently, the following test were fully verified or were fully explored without
 | `prove_div_div_by_zero(int128)` | ✅ |
 | `prove_add_range(int128,int128)` | ✅ |
 | `prove_sub_values(int128,int128)` | ✅ |
+| `prove_inv_double_inverse(int128)` | 👍 |
 
 When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
 
@@ -59,13 +60,12 @@ The following invariants are in the process of verification or failed in the pre
 | Invariant | Result | Blockers
 | ----- | :---: | -----
 | `prove_mul_associative(int128, int128, int128)` | ❓ |
-| `prove_mul_distributive(int128, int128, int128)` | ❓ |
+| `prove_mul_distributive(int128, int128, int128)` | 💥 | 
 | `prove_mul_values(int128, int128)` | ❓ |
 | `prove_abs_multiplicativeness(int128, int128)` | ❓ |
-| `prove_inv_double_inverse(int128)` | ❓ |
 | `prove_inv_division_noncommutativity(int128, int128)` | ❓ |
 | `prove_inv_multiplication(int128, int128)` | ❓ |
-| `prove_inv_identity(int128)` | ❓ |
+| `prove_inv_identity(int128)` | 💥 |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
 | `prove_gavg_operand_order(int128, int128)` | ❓ |
 | `prove_pow_zero_exponent(int128)`  | ❓ |

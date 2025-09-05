@@ -15,7 +15,7 @@ verify-hevm:
 	@mkdir -p logs
 	@forge clean 2> /dev/null
 	@forge build --ast 2> /dev/null
-	hevm test --debug --loop-detection-heuristic Naive --max-iterations 65 --max-depth 50 $(HEVM_ARG) #| tee logs/verify-hevm.log
+	hevm test  --num-cex-fuzz 100 --max-buf-size 12 --debug --loop-detection-heuristic Naive --max-iterations 65 --max-depth 70 --solver bitwuzla $(HEVM_ARG) #| tee logs/verify-hevm.log
 
 fuzz:
 	@mkdir -p logs

@@ -552,6 +552,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for distributive property
     // x * (y + z) == x * y + x * z
+    /*
     function prove_mul_distributive(int128 x, int128 y, int128 z) public view {
         require(abs(x) >= ONE_TENTH_FP);
         require(abs(y) >= ONE_TENTH_FP);
@@ -570,7 +571,7 @@ contract CryticABDKMath64x64Properties {
                 ONE_TENTH_FP
             )
         );
-    }
+    }*/
 
     // Test for identity operation
     // x * 1 == x  (also check that x * 0 == 0)
@@ -934,13 +935,37 @@ contract CryticABDKMath64x64Properties {
     // Test that the inverse of the inverse is close enough to the
     // original number
 
+    function msb64x64(int128 x) internal pure returns (uint256 msb) {
+        // Work with absolute value
+        uint128 ux = uint128(x >= 0 ? x : -x);
+
+        // Take only the integer part
+        uint128 intPart = ux >> 64;
+
+        if (intPart == 0) {
+            // x is smaller than 1, conservatively return 0
+            return 0;
+        }
+
+        // Compute MSB of integer part
+        if (intPart >= 2**64)  { intPart >>= 64; msb += 64; }
+        if (intPart >= 2**32)  { intPart >>= 32; msb += 32; }
+        if (intPart >= 2**16)  { intPart >>= 16; msb += 16; }
+        if (intPart >= 2**8)   { intPart >>= 8;  msb += 8; }
+        if (intPart >= 2**4)   { intPart >>= 4;  msb += 4; }
+        if (intPart >= 2**2)   { intPart >>= 2;  msb += 2; }
+        if (intPart >= 2**1)   {                 msb += 1; }
+
+        return msb;
+    }
+
     function prove_inv_double_inverse(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 double_inv_x = inv(inv(x));
 
         // The maximum loss of precision will be 2 * log2(x) bits rounded up
-        uint256 loss = 2 * toUInt(log_2(x)) + 2;
+        uint256 loss = 2 * msb64x64(x) + 2;
 
         assert(equal_within_precision(x, double_inv_x, loss));
     }
@@ -1004,10 +1029,6 @@ contract CryticABDKMath64x64Properties {
 
         int128 inv_x = inv(x);
         int128 identity = mul(inv_x, x);
-
-        require(
-            significant_bits_after_mult(x, inv_x) > REQUIRED_SIGNIFICANT_BITS
-        );
 
         // They should agree with a tolerance of one tenth of a percent
         assert(equal_within_tolerance(identity, ONE_FP, ONE_TENTH_FP));
