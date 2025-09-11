@@ -2,7 +2,7 @@ testMode: assertion
 seqLen: 1
 format: text
 testLimit: 1000000000000
-corpusDir: test/corpus
+corpusDir: echidna-corpus
 
 #filterBlacklist: false
 #filterFunctions:
