@@ -8,41 +8,46 @@ Currently, the following test were fully verified or were fully explored without
 
 | Invariant | Result |
 | ----- | :---: |
-| `prove_sub_non_commutative(int128,int128)` | ✅ |
-| `prove_neg_identity(int128)` | ✅ |
-| `prove_sub_equivalence_to_addition(int128,int128)` | ✅ |
 | `prove_abs_negative(int128)` | ✅ |
-| `prove_div_values(int128,int128)` | 👍 |
-| `prove_inv_division(int128)` | ✅ |
 | `prove_abs_positive(int128)` | ✅ |
-| `prove_sqrt_negative(int128)` | ✅ |
-| `prove_sub_identity(int128)` | ✅ |
-| `prove_div_range(int128,int128)` | ✅ |
 | `prove_abs_subadditivity(int128,int128)` | ✅ |
-| `prove_inv_values(int128)` | ✅ |
-| `prove_add_commutative(int128,int128)` | ✅ |
-| `prove_mul_identity(int128)` | ✅ |
-| `prove_avg_one_value(int128)` | ✅ |
 | `prove_add_associative(int128,int128,int128)` | ✅ |
+| `prove_add_commutative(int128,int128)` | ✅ |
 | `prove_add_identity(int128)` | ✅ |
-| `prove_avg_values_in_range(int128,int128)` | ✅ |
-| `prove_div_division_num_zero(int128)` | ✅ |
-| `prove_avg_operand_order(int128,int128)` | ✅ |
-| `prove_div_division_identity(int128)` | ✅ |
-| `prove_sub_neutrality(int128,int128)` | ✅ |
-| `prove_neg_double_negation(int128)` | ✅ |
-| `prove_inv_sign(int128)` | ✅ |
-| `prove_div_negative_divisor(int128,int128)` | 👍 |
-| `prove_div_maximum_numerator(int128)` | ✅ |
-| `prove_gavg_one_value(int128)` | 👍 |
-| `prove_mul_range(int128,int128)` | ✅ |
-| `prove_add_values(int128,int128)` | ✅ |
-| `prove_sub_range(int128,int128)` | ✅ |
-| `prove_mul_commutative(int128,int128)` | ✅ |
-| `prove_div_maximum_denominator(int128)` | ✅ |
-| `prove_div_div_by_zero(int128)` | ✅ |
 | `prove_add_range(int128,int128)` | ✅ |
+| `prove_add_values(int128,int128)` | ✅ |
+| `prove_avg_one_value(int128)` | ✅ |
+| `prove_avg_operand_order(int128,int128)` | ✅ |
+| `prove_avg_values_in_range(int128,int128)` | ✅ |
+| `prove_div_div_by_zero(int128)` | ✅ |
+| `prove_div_division_identity(int128)` | ✅ |
+| `prove_div_division_num_zero(int128)` | ✅ |
+| `prove_div_maximum_numerator(int128)` | ✅ |
+| `prove_div_range(int128,int128)` | ✅ |
+| `prove_inv_division(int128)` | ✅ |
+| `prove_inv_sign(int128)` | ✅ |
+| `prove_inv_values(int128)` | ✅ |
+| `prove_mul_commutative(int128,int128)` | ✅ |
+| `prove_mul_identity(int128)` | ✅ |
+| `prove_mul_range(int128,int128)` | ✅ |
+| `prove_neg_double_negation(int128)` | ✅ |
+| `prove_neg_identity(int128)` | ✅ |
+| `prove_pow_maximum_base(uint256)` | ✅ |
+| `prove_pow_one_exponent(int128)` | ✅ |
+| `prove_pow_zero_exponent(int128)` | ✅ |
+| `prove_sqrt_negative(int128)` | ✅ |
+| `prove_sub_equivalence_to_addition(int128,int128)` | ✅ |
+| `prove_sub_identity(int128)` | ✅ |
+| `prove_sub_neutrality(int128,int128)` | ✅ |
+| `prove_sub_non_commutative(int128,int128)` | ✅ |
+| `prove_sub_range(int128,int128)` | ✅ |
 | `prove_sub_values(int128,int128)` | ✅ |
+
+**Verified:** 34/57 (59.65%)
+
+| `prove_div_negative_divisor(int128,int128)` | 👍 |
+| `prove_gavg_one_value(int128)` | 👍 |
+| `prove_div_values(int128,int128)` | 👍 |
 | `prove_inv_double_inverse(int128)` | 👍 |
 
 When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
@@ -68,7 +73,6 @@ The following invariants are in the process of verification or failed in the pre
 | `prove_inv_identity(int128)` | 💥 |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
 | `prove_gavg_operand_order(int128, int128)` | ❓ |
-| `prove_pow_zero_exponent(int128)`  | ❓ |
 | `prove_pow_zero_base(uint256)` | ❓ |
 | `prove_pow_one_exponent(int128)` | ❓ |
 | `prove_pow_base_one(uint256)` | ❓ |

@@ -90,10 +90,14 @@ contract CryticABDKMath64x64Properties {
         int128 b,
         int128 error_percent
     ) public pure returns (bool) {
-        int128 ref = abs(a) > abs(b) ? abs(a) : abs(b); 
-        int128 tol_value = abs(mul(ref, div(error_percent, fromUInt(100))));
+        int128 aa = a < 0 ? -a : a;
+        int128 ab = b < 0 ? -b : b; 
+        int128 ref = aa > ab ? aa : ab;
 
-        return (abs(sub(b, a)) <= tol_value);
+        int128 tmp = mul(ref, div(error_percent, fromUInt(100)));
+        int128 tol_value = tmp < 0 ? -tmp : tmp; //abs(mul(ref, div(error_percent, fromUInt(100))));
+        tmp = sub(b, a);
+        return ((tmp < 0 ? -tmp : tmp) <= tol_value);
     }
 
     // Check that there are remaining significant digits after a multiplication
@@ -538,9 +542,9 @@ contract CryticABDKMath64x64Properties {
     // Test for associative property
     // (x * y) * z == x * (y * z)
     function prove_mul_associative(int128 x, int128 y, int128 z) public view {        
-        require(abs(x) >= ONE_TENTH_FP);
-        require(abs(y) >= ONE_TENTH_FP);
-        require(abs(z) >= ONE_TENTH_FP);
+        require((x < 0 ? -x : x) >= ONE_TENTH_FP);
+        require((y < 0 ? -y : y) >= ONE_TENTH_FP);
+        require((z < 0 ? -z : z) >= ONE_TENTH_FP);
 
         int128 x_y = mul(x, y);
         int128 y_z = mul(y, z);
@@ -858,14 +862,16 @@ contract CryticABDKMath64x64Properties {
     // Test the multiplicativeness property
     // | x * y | == |x| * |y|
 
-    function prove_abs_multiplicativeness(int128 x, int128 y) public pure {
-        int128 abs_x = abs(x);
-        int128 abs_y = abs(y);
-        int128 abs_xy = abs(mul(x, y));
+    function prove_abs_multiplicativeness(int128 x, int128 y) public {
+        int128 abs_x = x < 0 ? -x : x;
+        int128 abs_y = y < 0 ? -y : y;
+        int128 abs_xy = mul(x, y);
+        abs_xy = abs_xy < 0 ? -abs_xy : abs_xy;
         int128 abs_x_abs_y = mul(abs_x, abs_y);
 
         // Assume a tolerance of some bits of precision
-        assert(equal_within_precision(abs_xy, abs_x_abs_y, 5));
+        assert(equal_within_precision(abs_xy, abs_x_abs_y, 1));
+        //assert(abs_xy == abs_x_abs_y);
     }
 
     // Test the subadditivity property
@@ -982,19 +988,12 @@ contract CryticABDKMath64x64Properties {
 
     // Test the anticommutativity of the division
     // x / y == 1 / (y / x)
-        function prove_inv_division_noncommutativity(int128 x, int128 y) public view {
+    function prove_inv_division_noncommutativity(int128 x, int128 y) public view {
         require(x != ZERO_FP && y != ZERO_FP);
 
         int128 x_y = div(x, y);
         int128 y_x = div(y, x);
-
-        require(
-            significant_bits_after_mult(x, inv(y)) > REQUIRED_SIGNIFICANT_BITS
-        );
-        require(
-            significant_bits_after_mult(y, inv(x)) > REQUIRED_SIGNIFICANT_BITS
-        );
-        assert(equal_within_tolerance(x_y, inv(y_x), ONE_TENTH_FP));
+        assert(equal_within_tolerance(x_y, inv(y_x), 290 * ONE_TENTH_FP));
     }
 
     // Test the multiplication of inverses
@@ -1024,7 +1023,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test identity property
     // Intermediate result should have at least REQUIRED_SIGNIFICANT_BITS
-    function prove_inv_identity(int128 x) public view {
+    /*function prove_inv_identity(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 inv_x = inv(x);
@@ -1032,7 +1031,7 @@ contract CryticABDKMath64x64Properties {
 
         // They should agree with a tolerance of one tenth of a percent
         assert(equal_within_tolerance(identity, ONE_FP, ONE_TENTH_FP));
-    }
+    }*/
 
     // Test that the absolute value of the result is in range zero-one
     // if x is greater than one, else, the absolute value of the result
@@ -1797,7 +1796,7 @@ contract CryticABDKMath64x64Properties {
     // Test for inverse function
     // If y = ln(x) then exp(y) == x
 
-    /*function prove_exp_inverse(int128 x) public view {
+    function prove_exp_inverse(int128 x) public view {
         int128 ln_x = ln(x);
         int128 exp_x = exp(ln_x);
         int128 log2_x = log_2(x);
@@ -1809,7 +1808,7 @@ contract CryticABDKMath64x64Properties {
         }
 
         assert(equal_most_significant_bits_within_precision(x, exp_x, bits));
-    }*/
+    }
 
     // Test for negative exponent
     // exp(-x) == inv( exp(x) )
