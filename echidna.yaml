@@ -1,11 +1,1 @@
-testMode: assertion
-seqLen: 1
-format: text
-testLimit: 1000000000000
-corpusDir: echidna-corpus
-
-#filterBlacklist: false
-#filterFunctions:
-  #- CryticABDKMath64x64Properties.prove_mul_associative(int128,int128,int128)
-  #- CryticABDKMath64x64Properties.prove_mul_distributive(int128,int128,int128)
-  #- CryticABDKMath64x64Properties.prove_mul_values(int128,int128)
+test/verify.yaml
