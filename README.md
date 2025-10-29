@@ -73,7 +73,6 @@ The following invariants are in the process of verification or failed in the pre
 | `prove_inv_identity(int128)` | 💥 |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
 | `prove_gavg_operand_order(int128, int128)` | ❓ |
-| `prove_pow_zero_exponent(int128)`  | ❓ |
 | `prove_pow_zero_base(uint256)` | ❓ |
 | `prove_pow_one_exponent(int128)` | ❓ |
 | `prove_pow_base_one(uint256)` | ❓ |
