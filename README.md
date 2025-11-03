@@ -45,6 +45,10 @@ Currently, the following test were fully verified or were fully explored without
 
 **Verified:** 34/57 (59.65%)
 
+| `prove_mul_associative(int128, int128, int128)` |  👍 |
+| `prove_mul_values(int128, int128)` | 👍 |
+| `prove_abs_multiplicativeness(int128, int128)` | 👍 |
+| `prove_inv_division_noncommutativity(int128, int128)` | 👍 |
 | `prove_div_negative_divisor(int128,int128)` | 👍 |
 | `prove_gavg_one_value(int128)` | 👍 |
 | `prove_div_values(int128,int128)` | 👍 |
@@ -64,11 +68,7 @@ The following invariants are in the process of verification or failed in the pre
 
 | Invariant | Result | Blockers
 | ----- | :---: | -----
-| `prove_mul_associative(int128, int128, int128)` | ❓ |
 | `prove_mul_distributive(int128, int128, int128)` | 💥 | 
-| `prove_mul_values(int128, int128)` | ❓ |
-| `prove_abs_multiplicativeness(int128, int128)` | ❓ |
-| `prove_inv_division_noncommutativity(int128, int128)` | ❓ |
 | `prove_inv_multiplication(int128, int128)` | ❓ |
 | `prove_inv_identity(int128)` | 💥 |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
