@@ -68,20 +68,18 @@ The following invariants are in the process of verification or failed in the pre
 
 | Invariant | Result | Blockers
 | ----- | :---: | -----
-| `prove_mul_distributive(int128, int128, int128)` | 💥 | 
+| `prove_mul_distributive(int128, int128, int128)` | 💥 |
 | `prove_inv_multiplication(int128, int128)` | ❓ |
 | `prove_inv_identity(int128)` | 💥 |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
 | `prove_gavg_operand_order(int128, int128)` | ❓ |
 | `prove_pow_zero_base(uint256)` | ❓ |
-| `prove_pow_one_exponent(int128)` | ❓ |
 | `prove_pow_base_one(uint256)` | ❓ |
 | `prove_pow_product_same_base(int128, uint256, uint256)` | 💥 |
 | `prove_pow_power_of_an_exponentiation(int128, uint256, uint256)` | 💥 |
 | `prove_pow_distributive(int128, int128, uint256)` | 💥 |
 | `prove_pow_values(int128, uint256)` | ❓ |
 | `prove_pow_sign(int128, uint256)` | ❓ |
-| `prove_pow_maximum_base(uint256)` | ❓ |
 | `prove_pow_high_exponent(int128, uint256)` | 💥 |
 | `prove_sqrt_inverse_mul(int128)` | 💥 |
 | `prove_sqrt_inverse_pow(int128)` | 💥 |

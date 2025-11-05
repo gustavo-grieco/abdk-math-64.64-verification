@@ -91,7 +91,7 @@ contract CryticABDKMath64x64Properties {
         int128 error_percent
     ) public pure returns (bool) {
         int128 aa = a < 0 ? -a : a;
-        int128 ab = b < 0 ? -b : b; 
+        int128 ab = b < 0 ? -b : b;
         int128 ref = aa > ab ? aa : ab;
 
         int128 tmp = mul(ref, div(error_percent, fromUInt(100)));
@@ -541,7 +541,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test for associative property
     // (x * y) * z == x * (y * z)
-    function prove_mul_associative(int128 x, int128 y, int128 z) public view {        
+    function prove_mul_associative(int128 x, int128 y, int128 z) public view {
         require((x < 0 ? -x : x) >= ONE_TENTH_FP);
         require((y < 0 ? -y : y) >= ONE_TENTH_FP);
         require((z < 0 ? -z : z) >= ONE_TENTH_FP);
@@ -1392,13 +1392,13 @@ contract CryticABDKMath64x64Properties {
     }
 
     // Test for abs(base) < 1 and high exponent
-    /*function prove_pow_high_exponent(int128 x, uint256 a) public view {
-        require(abs(x) < ONE_FP && a > 2 ** 64);
+    function prove_pow_high_exponent(int128 x, uint256 a) public view {
+        require(abs(x) < ONE_FP && a > 2 ** 128);
 
         int128 result = pow(x, a);
 
         assert(result == ZERO_FP);
-    }*/
+    }
 
     /* ================================================================
 
