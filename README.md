@@ -45,6 +45,18 @@ Currently, the following test were fully verified or were fully explored without
 
 **Verified:** 34/57 (59.65%)
 
+When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
+
+* **Verified** ✅ The code was fully explored, without any issues on the translation or during solving. As expected, no counterexamples.
+* **Passed**  👍 The code was fully explored without detecting any counterexamples, but the SMT solver cannot determine the answer to some of the queries (e.g. it timed out), so the assertion could still fail.
+* **Failed** 💥 The exploration revealed a counterexample that was successfully replayed in concrete mode.
+* **Error** ❌ A bug or a missing feature blocks the exploration or solving of some paths.
+* **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths.
+
+Some invariants were not fully verified yet:
+
+| Invariant | Result |
+| ----- | :---: |
 | `prove_mul_associative(int128, int128, int128)` |  👍 |
 | `prove_mul_values(int128, int128)` | 👍 |
 | `prove_abs_multiplicativeness(int128, int128)` | 👍 |
@@ -54,20 +66,12 @@ Currently, the following test were fully verified or were fully explored without
 | `prove_div_values(int128,int128)` | 👍 |
 | `prove_inv_double_inverse(int128)` | 👍 |
 
-When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
-
-* **Verified** ✅ The code was fully explored, without any issues on the translation or during solving. As expected, no counterexamples.
-* **Passed**  👍 The code was fully explored without detecting any counterexamples, but the SMT solver cannot determine the answer to some of the queries (e.g. it timed out), so the assertion could still fail.
-* **Failed** 💥 The exploration revealed a counterexample that was successfully replayed in concrete mode.
-* **Error** ❌ A bug or a missing feature blocks the exploration or solving of some paths.
-* **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths.
-
-In the case of `prove_div_values(int128,int128)` and `prove_div_negative_divisor(int128,int128)`, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
+In these cases, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
 
 The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time.
 
 | Invariant | Result | Blockers
-| ----- | :---: | -----
+| ----- | :---: | ----- 
 | `prove_mul_distributive(int128, int128, int128)` | 💥 |
 | `prove_inv_multiplication(int128, int128)` | ❓ |
 | `prove_inv_identity(int128)` | 💥 |
