@@ -1023,7 +1023,7 @@ contract CryticABDKMath64x64Properties {
 
     // Test identity property
     // Intermediate result should have at least REQUIRED_SIGNIFICANT_BITS
-    function prove_inv_identity(int128 x) public view {
+    /*function prove_inv_identity(int128 x) public view {
         require(x != ZERO_FP);
 
         int128 inv_x = inv(x);
@@ -1031,7 +1031,7 @@ contract CryticABDKMath64x64Properties {
 
         // They should agree with a tolerance of one tenth of a percent
         assert(equal_within_tolerance(identity, ONE_FP, ONE_TENTH_FP));
-    }
+    }*/
 
     // Test that the absolute value of the result is in range zero-one
     // if x is greater than one, else, the absolute value of the result

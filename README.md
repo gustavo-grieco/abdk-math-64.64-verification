@@ -27,6 +27,8 @@ Currently, the following test were fully verified or were fully explored without
 | `prove_inv_division(int128)` | ✅ |
 | `prove_inv_sign(int128)` | ✅ |
 | `prove_inv_values(int128)` | ✅ |
+| `prove_ln_negative(int128)` | ✅ |
+| `prove_log2_negative(int128)` | ✅ |
 | `prove_mul_commutative(int128,int128)` | ✅ |
 | `prove_mul_identity(int128)` | ✅ |
 | `prove_mul_range(int128,int128)` | ✅ |
@@ -42,10 +44,8 @@ Currently, the following test were fully verified or were fully explored without
 | `prove_sub_non_commutative(int128,int128)` | ✅ |
 | `prove_sub_range(int128,int128)` | ✅ |
 | `prove_sub_values(int128,int128)` | ✅ |
-| `prove_ln_negative(int128)` | ✅ |
-| `prove_log2_negative(int128)` | ✅ |
 
-**Verified:** 34/57 (59.65%)
+**Verified:** 36/58 (62.07%)
 
 When an invariant is explored using the symbolic engine in verification mode, there a few possible results:
 

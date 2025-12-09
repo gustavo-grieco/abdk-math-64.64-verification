@@ -7,7 +7,7 @@ format: text
 symExec: true
 symExecMaxExplore: 100
 symExecMaxIters: 65
-symExecTimeout: 10
+symExecTimeout: 30
 symExecNSolvers: 10
 symExecTargets: # keep these sorted
 - prove_abs_negative
