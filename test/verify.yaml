@@ -49,3 +49,5 @@ symExecTargets: # keep these sorted
 - prove_sub_non_commutative
 - prove_sub_range
 - prove_sub_values
+- prove_ln_negative
+- prove_log2_negative

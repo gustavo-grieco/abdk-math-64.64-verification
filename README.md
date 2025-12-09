@@ -42,6 +42,8 @@ Currently, the following test were fully verified or were fully explored without
 | `prove_sub_non_commutative(int128,int128)` | ✅ |
 | `prove_sub_range(int128,int128)` | ✅ |
 | `prove_sub_values(int128,int128)` | ✅ |
+| `prove_ln_negative(int128)` | ✅ |
+| `prove_log2_negative(int128)` | ✅ |
 
 **Verified:** 34/57 (59.65%)
 
@@ -71,7 +73,7 @@ In these cases, there are timeouts when solving some SMT constraints. Using diff
 The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time.
 
 | Invariant | Result | Blockers
-| ----- | :---: | ----- 
+| ----- | :---: | -----
 | `prove_mul_distributive(int128, int128, int128)` | 💥 |
 | `prove_inv_multiplication(int128, int128)` | ❓ |
 | `prove_inv_identity(int128)` | 💥 |
@@ -90,10 +92,8 @@ The following invariants are in the process of verification or failed in the pre
 | `prove_sqrt_distributive(int128, int128)` | ❓ |
 | `prove_log2_distributive_mul(int128, int128)` | ❓ |
 | `prove_log2_power(int128, uint256)` | 💥 |
-| `prove_log2_negative(int128)` | ❓ |
 | `prove_ln_distributive_mul(int128, int128)` | 💥 |
 | `prove_ln_power(int128, uint256)` | 💥 |
-| `prove_ln_negative(int128)` | ⏳ | https://github.com/argotorg/hevm/issues/850
 | `prove_exp2_equivalence_pow(uint256)` | ❓ |
 | `prove_exp2_inverse(int128)` | 💥 |
 | `prove_exp2_negative_exponent(int128)` | ❓ |
