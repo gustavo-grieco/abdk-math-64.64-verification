@@ -1040,7 +1040,6 @@ contract CryticABDKMath64x64Properties {
         // Bound x to a reasonable range to avoid extreme precision loss
         // When |x| is very large, inv(x) becomes very small and loses precision
         // For x = 10^9, inv(x) = 10^-9 which has ~30 bits of precision
-        // For x = 10^18, inv(x) = 10^-18 which only has ~4 bits of precision
         int128 abs_x = x < 0 ? -x : x;
         require(abs_x >= ONE_TENTH_FP && abs_x <= BILLION_FP);
 
