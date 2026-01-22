@@ -4,8 +4,20 @@ format: text
 testLimit: 1000000000000
 corpusDir: test/corpus
 
-#filterBlacklist: false
-#filterFunctions:
-  #- CryticABDKMath64x64Properties.prove_mul_associative(int128,int128,int128)
-  #- CryticABDKMath64x64Properties.prove_mul_distributive(int128,int128,int128)
-  #- CryticABDKMath64x64Properties.prove_mul_values(int128,int128)
+filterBlacklist: false
+filterFunctions:
+  - CryticABDKMath64x64Properties.prove_mul_associative(int128,int128,int128)
+  - CryticABDKMath64x64Properties.prove_mul_values(int128,int128)
+  - CryticABDKMath64x64Properties.prove_abs_multiplicativeness(int128,int128)
+  - CryticABDKMath64x64Properties.prove_inv_division_noncommutativity(int128,int128)
+  - CryticABDKMath64x64Properties.prove_div_negative_divisor(int128,int128)
+  - CryticABDKMath64x64Properties.prove_gavg_one_value(int128)
+  - CryticABDKMath64x64Properties.prove_div_values(int128,int128)
+  - CryticABDKMath64x64Properties.prove_inv_double_inverse(int128)
+  - CryticABDKMath64x64Properties.prove_mul_distributive(int128,int128,int128)
+  - CryticABDKMath64x64Properties.prove_inv_multiplication(int128,int128)
+  - CryticABDKMath64x64Properties.prove_inv_identity(int128)
+  - CryticABDKMath64x64Properties.prove_pow_zero_base(uint256)
+  - CryticABDKMath64x64Properties.prove_pow_values(int128,uint256)
+  - CryticABDKMath64x64Properties.prove_sqrt_inverse_mul(int128)
+  - CryticABDKMath64x64Properties.prove_sqrt_inverse_pow(int128)

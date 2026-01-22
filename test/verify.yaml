@@ -9,6 +9,7 @@ symExecMaxExplore: 100
 symExecMaxIters: 65
 symExecTimeout: 30
 symExecNSolvers: 10
+symExecSMTSolver: bitwuzla
 symExecTargets: # keep these sorted
 - prove_abs_negative
 - prove_abs_positive

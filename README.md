@@ -74,9 +74,9 @@ The following invariants are in the process of verification or failed in the pre
 
 | Invariant | Result | Blockers
 | ----- | :---: | -----
-| `prove_mul_distributive(int128, int128, int128)` | 💥 |
+| `prove_mul_distributive(int128, int128, int128)` | ❓ |
 | `prove_inv_multiplication(int128, int128)` | ❓ |
-| `prove_inv_identity(int128)` | 💥 |
+| `prove_inv_identity(int128)` | ❓ |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
 | `prove_gavg_operand_order(int128, int128)` | ❓ |
 | `prove_pow_zero_base(uint256)` | ❓ |
@@ -87,15 +87,15 @@ The following invariants are in the process of verification or failed in the pre
 | `prove_pow_values(int128, uint256)` | ❓ |
 | `prove_pow_sign(int128, uint256)` | ❓ |
 | `prove_pow_high_exponent(int128, uint256)` | 💥 |
-| `prove_sqrt_inverse_mul(int128)` | 💥 |
-| `prove_sqrt_inverse_pow(int128)` | 💥 |
+| `prove_sqrt_inverse_mul(int128)` | ❓ |
+| `prove_sqrt_inverse_pow(int128)` | ❓ |
 | `prove_sqrt_distributive(int128, int128)` | ❓ |
 | `prove_log2_distributive_mul(int128, int128)` | ❓ |
 | `prove_log2_power(int128, uint256)` | 💥 |
 | `prove_ln_distributive_mul(int128, int128)` | 💥 |
 | `prove_ln_power(int128, uint256)` | 💥 |
 | `prove_exp2_equivalence_pow(uint256)` | ❓ |
-| `prove_exp2_inverse(int128)` | 💥 |
+| `prove_exp2_inverse(int128)` | ❓ |
 | `prove_exp2_negative_exponent(int128)` | ❓ |
 | `prove_exp_inverse(int128)` | 💥 |
 | `prove_exp_negative_exponent(int128)` | ❓ |

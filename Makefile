@@ -20,3 +20,11 @@ verify-hevm:
 fuzz:
 	@mkdir -p logs
 	echidna . --contract CryticABDKMath64x64Properties --config test/fuzz.yaml --workers 8 #| tee logs/fuzz.log
+
+fuzz-echidna:
+	@mkdir -p logs
+ifeq ($(strip $(T)),)
+	echidna . --contract CryticABDKMath64x64Properties --config test/fuzz.yaml --workers 8
+else
+	@sed 's/{{T}}/$(T)/g' test/fuzz-template.yaml | echidna . --contract CryticABDKMath64x64Properties --config /dev/stdin --workers 8
+endif

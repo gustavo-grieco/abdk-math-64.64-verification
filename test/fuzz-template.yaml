@@ -1,0 +1,7 @@
+testMode: assertion
+seqLen: 1
+format: text
+testLimit: 1000000
+filterBlacklist: false
+filterFunctions:
+  - "CryticABDKMath64x64Properties.{{T}}"
