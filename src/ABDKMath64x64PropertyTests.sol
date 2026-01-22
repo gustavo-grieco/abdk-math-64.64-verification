@@ -1653,12 +1653,16 @@ contract CryticABDKMath64x64Properties {
         // Bound y to prevent overflow in pow
         require(y >= 1 && y <= 10);
 
+        int128 ln_x = ln(x);
+        // Require |ln(x)| >= 0.1 to avoid percentage comparison issues when ln(x) ≈ 0
+        int128 abs_ln_x = ln_x < 0 ? -ln_x : ln_x;
+        require(abs_ln_x >= ONE_TENTH_FP);
+
         int128 x_y = pow(x, y);
         // x^y must be in valid range for ln
         require(x_y >= ONE_TENTH_FP && x_y <= QUINTILLION_FP);
 
         int128 ln_x_y = ln(x_y);
-        int128 ln_x = ln(x);
         int128 y_times_ln_x = mul(fromUInt(y), ln_x);
 
         // Allow 10% tolerance for precision loss
