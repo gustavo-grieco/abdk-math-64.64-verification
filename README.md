@@ -44,6 +44,8 @@ Currently, the following test were fully verified or were fully explored without
 | `prove_sub_non_commutative(int128,int128)` | ✅ |
 | `prove_sub_range(int128,int128)` | ✅ |
 | `prove_sub_values(int128,int128)` | ✅ |
+| `prove_pow_zero_base(uint256)` | ✅ |
+| `prove_pow_base_one(uint256)` | ✅ |
 
 **Verified:** 36/58 (62.07%)
 
@@ -70,7 +72,7 @@ Some invariants were not fully verified yet:
 
 In these cases, there are timeouts when solving some SMT constraints. Using different [SMTs solvers could help to full verified these](https://github.com/ethereum/hevm/issues/709#issuecomment-2833348972).
 
-The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented. For the symbolic execution engine to be able to verify some of them, it will require aggresive [state merging implemented in hevm](https://github.com/ethereum/hevm/issues/763) in finish in reasonable amount of time.
+The following invariants are in the process of verification or failed in the preliminary fuzzing campaign and they need to be re-implemented.
 
 | Invariant | Result | Blockers
 | ----- | :---: | -----
@@ -79,8 +81,6 @@ The following invariants are in the process of verification or failed in the pre
 | `prove_inv_identity(int128)` | ❓ |
 | `prove_gavg_values_in_range(int128, int128)` | ❓ |
 | `prove_gavg_operand_order(int128, int128)` | ❓ |
-| `prove_pow_zero_base(uint256)` | ❓ |
-| `prove_pow_base_one(uint256)` | ❓ |
 | `prove_pow_product_same_base(int128, uint256, uint256)` | 💥 |
 | `prove_pow_power_of_an_exponentiation(int128, uint256, uint256)` | 💥 |
 | `prove_pow_distributive(int128, int128, uint256)` | 💥 |
