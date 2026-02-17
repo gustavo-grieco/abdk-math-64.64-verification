@@ -954,7 +954,7 @@ contract CryticABDKMath64x64Properties {
     // Test that the inverse of the inverse is close enough to the
     // original number
 
-    function msb64x64(int128 x) internal pure returns (uint256 msb) {
+    function msb64x64(int128 x) public pure returns (uint256 msb) {
         // Work with absolute value
         uint128 ux = uint128(x >= 0 ? x : -x);
 

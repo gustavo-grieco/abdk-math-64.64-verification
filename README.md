@@ -57,7 +57,7 @@ When an invariant is explored using the symbolic engine in verification mode, th
 * **Error** ❌ A bug or a missing feature blocks the exploration or solving of some paths.
 * **Timeout** ⏳ There are scalability issues preventing the creation of the model to explore all the program paths.
 
-Some invariants were not fully verified yet:
+Using echidna/hevm, some invariants were not fully verified yet:
 
 | Invariant | Result |
 | ----- | :---: |
@@ -102,6 +102,31 @@ The following invariants are in the process of verification or failed in the pre
 
 These tables are going to be updated over time as more invariants are verified.
 
+## Certora Prover Results
+
+In addition to hevm, some invariants were independently verified using the [Certora Prover](https://www.certora.com/) running locally. The following invariants were fully verified:
+
+| Invariant | Result |
+| ----- | :---: |
+| `prove_abs_multiplicativeness(int128, int128)` | ✅ |
+| `prove_div_negative_divisor(int128, int128)` | ✅ |
+| `prove_div_values(int128, int128)` | ✅ |
+| `prove_inv_double_inverse(int128)` | ✅ |
+| `prove_inv_identity(int128)` | ✅ |
+| `prove_mul_associative(int128, int128, int128)` | ✅ |
+| `prove_mul_distributive(int128, int128, int128)` | ✅ |
+| `prove_mul_values(int128, int128)` | ✅ |
+
+The following invariants could not be verified due to resource limitations:
+
+| Invariant | Result | Reason |
+| ----- | :---: | ----- |
+| `prove_inv_division_noncommutativity(int128, int128)` | 💥 | Real counterexample: near-zero results cause tolerance to round to 0 |
+| `prove_gavg_one_value(int128)` | ⏳ | Timeout |
+| `prove_sqrt_inverse_mul(int128)` | ⏳ | Timeout (nonlinear arithmetic from Newton iteration) |
+| `prove_exp_negative_exponent(int128)` | ❌ | OOM (exp_2 with 256 loop iterations) |
+| `prove_inv_multiplication(int128, int128)` | ❌ | OOM (too many complex functions) |
+
 ## How To Run
 
 If you want to run a preliminary fuzzing campaign, use:
@@ -122,12 +147,13 @@ If you want to run the verification of a single property, use `T` like this:
 make verify T=prove_abs_negative
 ```
 
-Alternatively, hevm can be used directly, even selecting an invariant:
+To make sure the verification works as expected, please install Echidna from its latest `master` revision and [Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2).
+
+Alternatively, hevm or certora can be used directly, even selecting an invariant:
 ```
 make verify-hevm T=prove_abs_negative
+make verify-certora T=prove_abs_negative
 ```
-
-To make sure the verification works as expected, please install Echidna from its latest `master` revision and [Bitwuzla 0.8.2](https://github.com/bitwuzla/bitwuzla/releases/tag/0.8.2).
 
 ## Changes
 
